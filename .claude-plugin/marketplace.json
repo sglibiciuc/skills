@@ -1,0 +1,20 @@
+{
+  "name": "sglibiciuc",
+  "owner": {
+    "name": "Sasha Glibiciuc"
+  },
+  "metadata": {
+    "description": "Sasha Glibiciuc's open-source plugins and skills for Claude Code and Codex"
+  },
+  "plugins": [
+    {
+      "name": "coordinator",
+      "source": "./plugins/coordinator",
+      "description": "Talk to one Coordinator: it agrees what you want and how it will work, then a team of role agents builds and checks it, and you get a working product.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Sasha Glibiciuc"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "coordinator",
+  "displayName": "Coordinator",
+  "version": "1.0.0",
+  "description": "Talk to one Coordinator: it agrees what you want and how it will work, then a team of role agents builds and checks it, and you get a working product.",
+  "author": {
+    "name": "Sasha Glibiciuc"
+  },
+  "keywords": [
+    "coordinator",
+    "build",
+    "automation",
+    "skill",
+    "plugin",
+    "no-code"
+  ]
+}

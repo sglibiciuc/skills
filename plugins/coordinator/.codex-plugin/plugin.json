@@ -1,0 +1,18 @@
+{
+  "name": "coordinator",
+  "version": "1.0.0",
+  "description": "Talk to one Coordinator: it agrees what you want and how it will work, then a team of role agents builds and checks it, and you get a working product.",
+  "author": {
+    "name": "Sasha Glibiciuc"
+  },
+  "keywords": ["coordinator", "build", "automation", "skill", "plugin", "no-code"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Coordinator",
+    "shortDescription": "Get a working product built for you",
+    "longDescription": "Talk to one Coordinator: it agrees what you want and how it will work, then a team of role agents builds and checks it, and you get a working product.",
+    "developerName": "Sasha Glibiciuc",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"]
+  }
+}

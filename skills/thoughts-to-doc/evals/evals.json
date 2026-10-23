@@ -1,0 +1,84 @@
+{
+  "skill": "thoughts-to-doc",
+  "how_to_run": "Scenarios: one subagent runs the skill, a second subagent plays the person from 'persona' and never reveals more than asked. If the skill-running agent cannot start the checker itself, the coordinator starts it strictly by references/verifier.md and the run report says so. A third, fresh subagent judges the finished interview-log.md and brief.md against 'checks' and the persona's hidden truth. Triggers: give each query to a model with this skill installed among others and record whether it loads the skill.",
+  "triggers": {
+    "should": [
+      "help me explain what I want from a new website, I can't put it into words",
+      "I have this CRM mechanic in my head but I can't describe it to my boss",
+      "interview me and write up what I actually want",
+      "/thoughts-to-doc",
+      "Помоги сформулировать, чего я хочу от нового процесса, у меня всё в голове",
+      "Ich habe eine Idee, kann sie aber nicht erklären. Frag mich aus und schreib es auf."
+    ],
+    "should_not": [
+      "build me a landing page for my bakery",
+      "write the email sequence for our onboarding campaign",
+      "grill me on this migration plan before I ship it",
+      "summarise this meeting transcript",
+      "turn this spec into code"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "website-unclear",
+      "language": "en",
+      "mode_the_persona_picks": "B",
+      "opening": "I want a website for my practice but honestly I don't know what should be on it.",
+      "persona": "Independent family therapist, 8 years in practice, gets clients by word of mouth. Wants fewer 'is this for me?' calls and more people booking a first session ready. Has no idea about pages or positioning; answers 'I don't know' to structure questions. Firmly: no prices on the site, no blog. Undecided: whether to show her photo. Will accept one suggestion about a short 'who I work with' section and reject a suggestion about online booking.",
+      "checks": [
+        "Questions arrive one per message",
+        "Mode choice is offered before the first question and logged",
+        "Every suggestion is logged as 'suggestion' and marked as such in the chat",
+        "The rejected online-booking suggestion is absent from the brief",
+        "The accepted 'who I work with' idea is in the brief",
+        "'No prices, no blog' appear as out of scope",
+        "The photo question is an open question, not a decision",
+        "The checker subagent ran on the draft before it was shown; the log holds the shown brief as a `draft` entry headed by that verdict",
+        "Every option message offers two or three options",
+        "Any change to the brief after it was shown went through the checker and was shown to the person again; the final brief.md is the text the person last confirmed",
+        "The checker's OPEN IN LOG list includes the photo entry and places it in open questions",
+        "The brief lets the studio estimate the work: each thing they would need to ask before quoting is either answered or listed as an open question"
+      ]
+    },
+    {
+      "id": "crm-mechanic",
+      "language": "ru",
+      "mode_the_persona_picks": "A",
+      "opening": "Хочу описать механику реактивации для руководителя, она у меня в голове, но словами не получается",
+      "persona": "CRM-маркетолог туроператора. Механика: клиенты, не покупавшие 12+ месяцев, получают письмо с подборкой по прошлому направлению, через 3 дня без открытия — SMS, после клика без покупки — звонок менеджера в течение суток. Цель — вернуть 5% спящей базы за квартал. Читатель — руководитель отдела, должен одобрить бюджет на SMS. Не знает точной стоимости SMS — это открытый вопрос. Отвечает короткими фразами с опечатками.",
+      "checks": [
+        "The whole conversation and the brief are in Russian",
+        "The interviewer offers no ideas of its own (mode A): no examples, answer choices or formulas inside questions",
+        "The log keeps the persona's typos verbatim",
+        "The brief names the reader (head of department) and the action (approve SMS budget)",
+        "12 months, 3 days, 24 hours and 5% per quarter appear exactly as given",
+        "SMS cost is listed as an open question with no invented figure",
+        "No implementation (templates, segments in a tool, code) is produced",
+        "Questions arrive one per message",
+        "The brief does not present the manager's call as the step after the SMS: it follows a click without purchase",
+        "'In one sentence' states the mechanic itself, not what the document is"
+      ]
+    },
+    {
+      "id": "process-for-knowledge-base",
+      "language": "en",
+      "mode_the_persona_picks": "A, then switches to B midway",
+      "opening": "",
+      "persona": "Owner of a 15-person agency. Wants a written process for how a new client request goes from first email to a signed estimate, for the team wiki. Knows the steps vaguely: someone replies within a day, a call, an estimate, owner signs off on anything over 10,000. Not sure who should own the first reply; after switching to mode B accepts the suggestion that the account manager on duty owns it. Changes his mind once: first says estimates go out in 2 days, later says 3.",
+      "checks": [
+        "With no opening message the interviewer starts the log before saying anything, logs the mode explanation as a 'question', and asks for the mode first",
+        "The mode switch is logged as a 'mode' entry holding the person's own words, not the interviewer's summary",
+        "The brief uses 3 days (the later answer), not 2",
+        "The 10,000 sign-off threshold is kept exactly",
+        "The first-reply owner appears only because the persona accepted the suggestion, and the log shows that acceptance",
+        "The brief is written for the team (readers who follow it), not for the owner",
+        "Questions arrive one per message",
+        "Every message after the person's first reply is in the language the person writes in",
+        "Any change to the brief after the person confirmed it was shown to them again before finishing",
+        "The team can follow the brief without coming back: who does each step and when is stated or listed as an open question",
+        "'In one sentence' states the process itself, not what the page is",
+        "No statement in the brief rests only on a `draft` entry confirmed by a general \"yes\""
+      ]
+    }
+  ]
+}
