@@ -1,12 +1,14 @@
 [English](README.md) | [Русский](README.ru.md)
 
-![Coordinator — from idea to a working product](assets/coordinator-cover.png)
+![Build More Possibilities — a collection of practical tools for people and AI](assets/repo-cover.jpg)
 
 # sglibiciuc/skills
 
 Sasha Glibiciuc's open-source plugins and skills for AI assistants. The repository is also a plugin marketplace named `sglibiciuc`.
 
 ## Coordinator
+
+![Coordinator — from idea to a working product](assets/coordinator-cover.png)
 
 Coordinator 1.0.0 is a plugin for Claude Code and Codex. You talk to one agent, the Coordinator. It asks what you want and agrees with you how it will work. Then a team of role agents builds the thing and checks it. You get a working product: an automation, a skill, a plugin, a website or an app.
 
