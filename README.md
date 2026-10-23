@@ -4,69 +4,52 @@
 
 # sglibiciuc/skills
 
-Sasha Glibiciuc's open-source plugins and skills for AI assistants. The repository is also a plugin marketplace named `sglibiciuc`.
+Sasha Glibiciuc's open-source plugins and skills for Claude Code and Codex. The repository is also a plugin marketplace named `sglibiciuc`.
 
-## Plugins
+## Installation
 
-| Plugin | What it does |
-|--------|--------------|
-| [Coordinator](plugins/coordinator/README.md) | For Claude Code and Codex. You agree with one agent on what you want and how it will work, then a team of role agents builds and checks it, and you get a working product. |
+### Claude Code
 
-## Skills
-
-| Skill | Language | What it does |
-|-------|----------|--------------|
-| [autonomous-loop-onboarding](skills/autonomous-loop-onboarding/) | EN | Sets up an autonomous task loop: you queue a task, an AI agent does it, checks its work and hands it back for your approval. |
-| [clear-writing](skills/clear-writing/) | RU | Writes, edits and reviews business emails and messages using the method of Maxim Ilyakhov and Lyudmila Sarycheva. |
-| [mnemaos](skills/mnemaos/) | EN | Builds a personal memory for your AI: a local folder of Markdown files. About it: [docs/mnemaos/](docs/mnemaos/). |
-| [mnemaos-mcp](skills/mnemaos-mcp/README.md) | EN | Optional memory server for mnemaos that serves the memory folder to any MCP client. It is a server, not a skill. |
-| [thoughts-to-doc](skills/thoughts-to-doc/) | EN, talks in any language | Asks questions one at a time until your idea becomes one plain brief that a person or an AI agent can act on. |
-
-## Install
-
-### Plugins
-
-Add the marketplace once.
-
-Claude Code:
+In a terminal:
 
 ```bash
 claude plugin marketplace add sglibiciuc/skills
+claude plugin install coordinator@sglibiciuc
 ```
 
-Codex:
+### Codex
+
+In a terminal:
 
 ```bash
 codex plugin marketplace add sglibiciuc/skills
+codex plugin add coordinator@sglibiciuc
 ```
 
-Then install the plugin by the steps in its README.
+Full steps, including how to allow the plugin's hooks in Codex, are in the [Coordinator README](plugins/coordinator/README.md).
 
 ### Standalone skills
 
-1. Clone the repository once:
+Download or clone this repository, then put the skill folder, for example `skills/thoughts-to-doc/`, where your tool looks for skills.
 
-   ```bash
-   git clone https://github.com/sglibiciuc/skills.git
-   ```
+**Claude Code**: copy the folder into `.claude/skills/` in your project, or into `~/.claude/skills/` to have it everywhere. Start a new session.
 
-2. From the same folder, copy the skill folder into your assistant's skills folder. Replace `clear-writing` with the skill you need.
+**Codex**: copy the folder into `.agents/skills/` in your repository, or into `~/.agents/skills/` to have it everywhere.
 
-Claude Code:
+If a skill has its own README, it may list other tools and other ways to install it.
 
-```bash
-mkdir -p ~/.claude/skills
-cp -r skills/skills/clear-writing ~/.claude/skills/clear-writing
-```
+## Reference
 
-Codex:
+### Plugins
 
-```bash
-mkdir -p ~/.agents/skills
-cp -r skills/skills/clear-writing ~/.agents/skills/clear-writing
-```
+- **[Coordinator](plugins/coordinator/README.md)**: you agree with one agent in Claude Code or Codex on what you want and how it will work, then a team of role agents builds and checks it, and you get a working product.
 
-Start a new session after copying. A skill's own README may give other ways to install it. More for Codex: [docs/README.codex.md](docs/README.codex.md). Gemini CLI: [docs/README.gemini.md](docs/README.gemini.md).
+### Skills
+
+- **[autonomous-loop-onboarding](skills/autonomous-loop-onboarding/)**: sets up an autonomous task loop where you queue a task, an AI agent does it, checks its work and hands it back for your approval. In English.
+- **[clear-writing](skills/clear-writing/)**: writes, edits and reviews business emails and messages in Russian using the method of Maxim Ilyakhov and Lyudmila Sarycheva.
+- **[mnemaos](skills/mnemaos/)**: builds a personal memory for your AI as a local folder of Markdown files, with an optional memory server over MCP. In English.
+- **[thoughts-to-doc](skills/thoughts-to-doc/)**: asks questions one at a time until your idea becomes one plain brief that a person or an AI agent can act on. In English, talks in any language.
 
 ## Bugs and ideas
 

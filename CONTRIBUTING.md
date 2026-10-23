@@ -71,8 +71,10 @@ Skills that don't need a full plugin live in `skills/your-skill-name/`:
 ```
 your-skill-name/
 ├── SKILL.md             # Skill definition with YAML frontmatter (required)
-└── references/          # Supporting materials (optional)
-    └── topic.md
+├── README.md            # Install and usage for people (optional)
+├── references/          # Supporting materials (optional)
+│   └── topic.md
+└── scripts/             # Helper scripts (optional)
 ```
 
 Exception: `skills/mnemaos-mcp/` is an MCP server, not a skill. It has no `SKILL.md` and is documented by its own `README.md`.
@@ -91,17 +93,17 @@ allowed-tools: Read, Grep, Glob
 
 1. **One plugin per folder** in `plugins/`, one skill per folder in `skills/`
 2. **Register plugins** in `.claude-plugin/marketplace.json`
-3. **Include a README** for plugins; skills are self-documented via SKILL.md (a skill may add its own README)
+3. **Include a README** for plugins; skills are self-documented via SKILL.md (a skill may add its own README). Everything about one plugin or skill, including how to install it, lives in its own folder; the root README links to it in one line
 4. **Name supported tools per skill**: if a standalone skill works in Gemini CLI or another tool, say so and how to install it in the skill's own README or SKILL.md
 5. **MIT license** for all contributions
 6. **No secrets or API keys** in the repository
-7. **Languages**: English for code and docs. The root README exists in English (`README.md`) and Russian (`README.ru.md`): change both together and keep the same facts. Skill content may be in other languages
+7. **Languages**: English for code, this file and `docs/`; any page may have a Russian twin next to it (`README.ru.md` next to `README.md`). The root README exists in both languages: change both together and keep the same facts. Plugin and skill content may be in the language of its audience
 
 ## Submitting
 
 1. Fork this repository
-2. Create your plugin in `plugins/your-plugin-name/` or skill in `skills/your-skill-name/`
-3. For plugins: add entry to `.claude-plugin/marketplace.json`
+2. Create your plugin or skill by the rules above
+3. Add one line for it to both root READMEs
 4. Submit a pull request
 
 We review PRs for quality, security, and usefulness.

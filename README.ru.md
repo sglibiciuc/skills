@@ -4,69 +4,52 @@
 
 # sglibiciuc/skills
 
-Открытые плагины и навыки Саши Глибичука для ИИ-ассистентов. Репозиторий заодно служит каталогом плагинов (marketplace) с именем `sglibiciuc`.
-
-## Плагины
-
-| Плагин | Что делает |
-|--------|------------|
-| [Координатор](plugins/coordinator/README.md) | Для Claude Code и Codex. Вы договариваетесь с одним агентом, что нужно и как это будет работать. Потом команда агентов собирает и проверяет результат, и вы получаете работающую вещь. |
-
-## Навыки
-
-| Навык | Язык | Что делает |
-|-------|------|------------|
-| [autonomous-loop-onboarding](skills/autonomous-loop-onboarding/) | EN | Настраивает автономный цикл задач: вы ставите задачу, ИИ-агент её выполняет, сам проверяет и отдаёт вам на одобрение. |
-| [clear-writing](skills/clear-writing/) | RU | Пишет, правит и проверяет деловые письма и сообщения по методу Максима Ильяхова и Людмилы Сарычевой. |
-| [mnemaos](skills/mnemaos/) | EN | Собирает личную память для ИИ: папку с Markdown-файлами на вашем компьютере. Описание: [docs/mnemaos/](docs/mnemaos/). |
-| [mnemaos-mcp](skills/mnemaos-mcp/README.md) | EN | Дополнительный сервер памяти для mnemaos, отдаёт папку памяти любому MCP-клиенту. Это сервер, а не навык. |
-| [thoughts-to-doc](skills/thoughts-to-doc/) | EN, говорит на любом языке | Задаёт вопросы по одному, пока ваша мысль не сложится в один простой документ, по которому человек или ИИ-агент сможет действовать. |
+Открытые плагины и навыки Саши Глибичука для Claude Code и Codex. Репозиторий заодно служит каталогом плагинов (marketplace) с именем `sglibiciuc`.
 
 ## Установка
 
-### Плагины
+### Claude Code
 
-Один раз подключите каталог.
-
-Claude Code:
+В терминале:
 
 ```bash
 claude plugin marketplace add sglibiciuc/skills
+claude plugin install coordinator@sglibiciuc
 ```
 
-Codex:
+### Codex
+
+В терминале:
 
 ```bash
 codex plugin marketplace add sglibiciuc/skills
+codex plugin add coordinator@sglibiciuc
 ```
 
-Дальше ставьте плагин по шагам из его README.
+Подробные шаги, в том числе как разрешить хуки плагина в Codex, есть в [README Координатора](plugins/coordinator/README.md).
 
 ### Отдельные навыки
 
-1. Один раз скачайте репозиторий:
+Скачайте или склонируйте репозиторий и положите папку навыка, например `skills/thoughts-to-doc/`, туда, где ваш инструмент ищет навыки.
 
-   ```bash
-   git clone https://github.com/sglibiciuc/skills.git
-   ```
+**Claude Code**: скопируйте папку в `.claude/skills/` своего проекта или в `~/.claude/skills/`, чтобы навык был доступен везде. Начните новую сессию.
 
-2. Из той же папки скопируйте папку навыка туда, где ваш ассистент ищет навыки. Вместо `clear-writing` подставьте нужный навык.
+**Codex**: скопируйте папку в `.agents/skills/` своего репозитория или в `~/.agents/skills/`, чтобы навык был доступен везде.
 
-Claude Code:
+Если у навыка есть свой README, там могут быть другие инструменты и другие способы установки.
 
-```bash
-mkdir -p ~/.claude/skills
-cp -r skills/skills/clear-writing ~/.claude/skills/clear-writing
-```
+## Справочник
 
-Codex:
+### Плагины
 
-```bash
-mkdir -p ~/.agents/skills
-cp -r skills/skills/clear-writing ~/.agents/skills/clear-writing
-```
+- **[Координатор](plugins/coordinator/README.md)**: вы договариваетесь с одним агентом в Claude Code или Codex, что нужно и как это будет работать, потом команда агентов собирает и проверяет результат, и вы получаете работающую вещь.
 
-После копирования начните новый сеанс. Если у навыка есть свой README, там могут быть и другие способы установки. Подробнее про Codex: [docs/README.codex.md](docs/README.codex.md). Про Gemini CLI: [docs/README.gemini.md](docs/README.gemini.md).
+### Навыки
+
+- **[autonomous-loop-onboarding](skills/autonomous-loop-onboarding/)**: настраивает автономный цикл задач, где вы ставите задачу, ИИ-агент её выполняет, сам проверяет и отдаёт вам на одобрение. На английском.
+- **[clear-writing](skills/clear-writing/)**: пишет, правит и проверяет деловые письма и сообщения на русском по методу Максима Ильяхова и Людмилы Сарычевой.
+- **[mnemaos](skills/mnemaos/)**: собирает личную память для ИИ в виде папки с Markdown-файлами на вашем компьютере, по желанию с сервером памяти по MCP. На английском.
+- **[thoughts-to-doc](skills/thoughts-to-doc/)**: задаёт вопросы по одному, пока ваша мысль не сложится в один простой документ, по которому человек или ИИ-агент сможет действовать. На английском, общается на любом языке.
 
 ## Ошибки и идеи
 
