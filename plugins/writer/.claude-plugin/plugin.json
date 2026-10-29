@@ -1,0 +1,10 @@
+{
+  "name": "writer",
+  "version": "1.0.0",
+  "description": "Writes and edits work texts in any language: checks with you who the text is for and what it promises before writing, keeps your facts, and remembers your style.",
+  "author": {
+    "name": "Sasha Glibiciuc"
+  },
+  "license": "MIT",
+  "keywords": ["writing", "editing", "copywriting", "business-writing", "ai-tells", "russian", "english"]
+}

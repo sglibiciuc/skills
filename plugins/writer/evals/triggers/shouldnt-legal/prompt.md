@@ -1,0 +1,9 @@
+---
+description: "should not trigger the writer skill"
+tags: [trigger, should-not]
+runs: 1
+max_turns: 4
+timeout_seconds: 300
+allowed_tools: [Read, Glob, Grep, Skill]
+---
+Проверь договор аренды юридически: есть ли риски для арендатора?

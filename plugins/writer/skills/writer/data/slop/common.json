@@ -1,0 +1,207 @@
+{
+  "language": "common",
+  "version": 1,
+  "patterns": [
+    {
+      "id": "c-utm-ai",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "utm_source=(?:chatgpt\\.com|openai|perplexity|copilot)",
+      "hint": "Link carries a tracking tag left by an AI tool; strip the query tag.",
+      "example_bad": "See https://example.com/page?utm_source=chatgpt.com"
+    },
+    {
+      "id": "c-citation-artifact",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "(?:contentReference|oaicite|oai_citation|turn\\d+(?:search|news|view)\\d+|:::writing|\\[\\[?cite:?\\d)",
+      "hint": "Leftover citation markup from a chat interface; delete it and keep the real link if any.",
+      "example_bad": "Sales grew 12% :contentReference[oaicite:3]{index=3}."
+    },
+    {
+      "id": "c-placeholder",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "\\[(?:your|insert|company|name|date)(?:\\s[^\\]\\n]{0,40})?\\]",
+      "hint": "Template slot was never filled; put in the real value or ask for it.",
+      "example_bad": "Best regards, [Your Name]"
+    },
+    {
+      "id": "c-todo-marker",
+      "category": "draft-leftover",
+      "severity": "soft",
+      "regex": "\\[(?:needed|todo|tbd|tk)[:\\s][^\\]\\n]{0,80}\\]",
+      "hint": "Open gap marker ([needed: …], TODO) is still in the text; resolve it before the text goes out.",
+      "example_bad": "Launch is on [needed: launch date]."
+    },
+    {
+      "id": "c-emdash-cluster",
+      "category": "punctuation",
+      "severity": "soft",
+      "regex": "^[^\\n]*?[—–][^\\n]*?[—–][^\\n]*?[—–][^\\n]*$",
+      "hint": "Three or more long dashes in one line; replace some with commas, periods or colons.",
+      "example_bad": "We ship — finally — a tool that works — and fast."
+    },
+    {
+      "id": "c-double-hyphen",
+      "category": "punctuation",
+      "severity": "soft",
+      "regex": "(?<=\\S) -- (?=\\S)",
+      "hint": "Double hyphen used as a dash; pick real punctuation.",
+      "example_bad": "The update -- long overdue -- is live."
+    },
+    {
+      "id": "c-arrow-in-prose",
+      "category": "punctuation",
+      "severity": "soft",
+      "regex": "(?<=\\w)\\s*(?:→|⇒|⟶|->|=>)\\s*(?=\\w)",
+      "hint": "Arrow from code or math inside prose; say the relation in words.",
+      "example_bad": "Idea → prototype → product."
+    },
+    {
+      "id": "c-math-sign-in-prose",
+      "category": "punctuation",
+      "severity": "soft",
+      "regex": "(?<=[^\\W\\d_])\\s+(?:=|≈|≠|>|<|\\+|vs\\.?)\\s+(?=[^\\W\\d_])",
+      "hint": "Math or code sign between words; write the relation out.",
+      "example_bad": "Speed > perfection. Fewer words = more meaning."
+    },
+    {
+      "id": "c-emoji-heading",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "^\\s*(?:#{1,6}\\s*|[-*•]\\s*)?[\\U0001F300-\\U0001FAFF☀-➿]",
+      "hint": "Emoji decorating a heading or list item; drop it unless the format really calls for it.",
+      "example_bad": "🚀 Launch plan"
+    },
+    {
+      "id": "c-bold-label-bullet",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "^\\s*(?:[-*•]|\\d+[.)])\\s+\\*\\*[^*\\n]{1,40}?(?:[:：]\\*\\*|\\*\\*\\s*[:：—–-])",
+      "hint": "List item opens with a bold label and colon; if labels add nothing, write prose.",
+      "example_bad": "- **Speed:** Speed is improved."
+    },
+    {
+      "id": "c-bold-sprinkle",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "^[^\\n]*?(?:\\*\\*[^*\\n]+\\*\\*[^\\n]*?){3,}$",
+      "hint": "Three or more bold spans in one line; keep bold for the one thing that matters.",
+      "example_bad": "Our **fast**, **secure** and **simple** tool."
+    },
+    {
+      "id": "c-hr-divider",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "^\\s*(?:-{3,}|\\*{3,}|_{3,})\\s*$",
+      "hint": "Horizontal rule between sections; usually decoration, headings already separate.",
+      "example_bad": "Intro text\n---\n## Next"
+    },
+    {
+      "id": "c-exclaim-repeat",
+      "category": "punctuation",
+      "severity": "soft",
+      "regex": "!{2,}|\\?!|!\\?",
+      "hint": "Stacked exclamation or ?! marks; one mark, or none, carries the tone.",
+      "example_bad": "We did it!!!"
+    },
+    {
+      "id": "c-hashtag-stack",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "(?:(?<![\\w])#[^\\W\\d_][\\w-]*\\s*){4,}",
+      "hint": "Pile of hashtags; keep the one or two that people actually search.",
+      "example_bad": "#ai #marketing #growth #success #mindset"
+    },
+    {
+      "id": "c-triple-list",
+      "category": "structure",
+      "severity": "soft",
+      "regex": "(?<![\\w])([^\\W\\d_]{3,}),\\s+([^\\W\\d_]{3,}),?\\s+(?:and|und|et|y|e|or)\\s+([^\\W\\d_]{3,})(?![\\w])",
+      "hint": "Three one-word items in a row; check each adds a separate idea, otherwise cut to what is true.",
+      "example_bad": "Fast, reliable and innovative."
+    },
+    {
+      "id": "c-fragment-stack",
+      "category": "structure",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:[^\\s.!?]+(?:[ \\t]+[^\\s.!?]+){0,2}[.!?][ \\t]+){2}[^\\s.!?]+(?:[ \\t]+[^\\s.!?]+){0,2}[.!?]",
+      "hint": "Three very short fragments in a row read as staged drama; join them into a sentence with a claim.",
+      "example_bad": "No setup. No fuss. Just results."
+    },
+    {
+      "id": "c-merge-field",
+      "category": "draft-leftover",
+      "severity": "soft",
+      "regex": "\\{\\{?\\s*(?:first_?name|last_?name|name|company)\\s*\\}?\\}|%(?:name|first_?name)%",
+      "hint": "Unfilled mail-merge field; fill it or remove the greeting.",
+      "example_bad": "Hi {first_name}, we have an offer."
+    },
+    {
+      "id": "c-mail-clutter",
+      "category": "draft-leftover",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:sent\\s+from\\s+my\\s+(?:iphone|ipad|android|phone))(?![\\w])",
+      "hint": "Client signature clutter; delete it.",
+      "example_bad": "Sent from my iPhone"
+    },
+    {
+      "id": "c-link-anchor",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "\\[(?:click\\s+here|here|link|this\\s+link)\\]\\(",
+      "hint": "Link text says nothing about the target; label the link with what the reader gets.",
+      "example_bad": "Details [here](https://example.com)."
+    },
+    {
+      "id": "c-url-shortener",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "(?<![\\w.])(?:bit\\.ly|clck\\.ru|goo\\.gl|tinyurl\\.com|t\\.co|cutt\\.ly|is\\.gd)/",
+      "hint": "Shortened link hides the destination; use the full or a readable link.",
+      "example_bad": "Sign up: bit.ly/3xyz"
+    },
+    {
+      "id": "c-chat-citation-token",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "【\\d+(?::\\d+)?†[^】\\n]*】|\\[citation:\\s*\\d+\\]|\\[cite:\\s*\\d+\\]|\\[cite_start\\]|\\[span_\\d+\\]\\(start_span\\)|attributableIndex|[-]",
+      "hint": "Citation token left by a chat interface; delete it and restore the real source, or drop the claim it propped up.",
+      "example_bad": "Revenue grew 12% [cite: 4] last year."
+    },
+    {
+      "id": "c-chat-link-scheme",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "grok_card://|grok_render_citation_card_json|attached_file://|\\]\\(sandbox:/mnt/data/|vertexaisearch\\.cloud\\.google\\.com/grounding-api-redirect|ppl-ai-file-upload|referrer=grok\\.com",
+      "hint": "Internal link of a chat tool; it opens nowhere for the reader. Replace it with the real link or remove it.",
+      "example_bad": "Download the [table](sandbox:/mnt/data/sales.csv)."
+    },
+    {
+      "id": "c-think-tag",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "</?think>",
+      "hint": "Reasoning tag from a model's output; delete it and anything between the tags that is not part of the text.",
+      "example_bad": "</think> The plan has three stages."
+    },
+    {
+      "id": "c-template-token",
+      "category": "draft-leftover",
+      "severity": "hard",
+      "regex": "INSERT_SOURCE_URL|PASTE_\\w+_URL_HERE|(?<![\\w])URL_HERE(?![\\w])|(?<![\\w\\d])20\\d\\d-XX-XX(?![\\w])",
+      "hint": "Template slot was never filled; put in the real value or ask for it.",
+      "example_bad": "Release date: 2026-XX-XX.",
+      "case_sensitive": true
+    },
+    {
+      "id": "c-invisible-char",
+      "category": "model-trace",
+      "severity": "soft",
+      "regex": "[\\u200b\\u200c\\u2060\\u180e\\u200e\\u200f\\u202a-\\u202e\\u2066-\\u2069]|(?<!\\d)\\u202f|\\u202f(?!\\d)|(?<=.)\\ufeff",
+      "hint": "Invisible character (zero-width, direction mark, stray narrow space). Some come from CMS or newsletters; remove those that do no job in this text. A narrow no-break space between digits is a thousands separator; keep it.",
+      "example_bad": "Word​with a hidden space (a zero-width space sits between the first two words)."
+    }
+  ]
+}
