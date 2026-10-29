@@ -42,6 +42,7 @@ If a skill has its own README, it may list other tools and other ways to install
 
 ### Plugins
 
+- **[Writer](plugins/writer/README.md)**: writes and edits work texts, checks what you want to say and promise, analyzes drafts for AI tells, and remembers your style with your permission.
 - **[Coordinator](plugins/coordinator/README.md)**: you agree with one agent in Claude Code or Codex on what you want and how it will work, then a team of role agents builds and checks it, and you get a working product.
 
 ### Skills

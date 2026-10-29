@@ -1,0 +1,1025 @@
+{
+  "language": "ru",
+  "version": 1,
+  "patterns": [
+    {
+      "id": "ru-ne-prosto-a",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?<![\\w])не\\s+просто\\s+[^.!?\\n]{1,60}?(?:,\\s*|\\s+[—–-]\\s+)(?:а|это|но)(?![\\w])",
+      "hint": "Contrast against something nobody claimed; check that someone actually holds the first view, otherwise state the second half directly.",
+      "example_bad": "Это не просто сервис, а целая экосистема."
+    },
+    {
+      "id": "ru-eto-ne-prosto",
+      "category": "contrast-formula",
+      "severity": "hard",
+      "regex": "(?<![\\w])это\\s+не\\s+просто\\s+[^.!?\\n]{1,60}?[.!]\\s+это(?![\\w])",
+      "hint": "The 'not just X' contrast split over two sentences; keep only the second claim.",
+      "example_bad": "Это не просто приложение. Это образ жизни."
+    },
+    {
+      "id": "ru-ne-tolko-no-i",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?<![\\w])не\\s+только\\s+[^.!?\\n]{1,60}?,?\\s+но\\s+и(?![\\w])",
+      "hint": "Additive contrast; fine once, a tell when it repeats. Often two plain clauses read better.",
+      "example_bad": "Курс не только учит, но и вдохновляет."
+    },
+    {
+      "id": "ru-rech-ne-o",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?<![\\w])речь\\s+(?:ид[её]т|шла)\\s+не\\s+(?:только\\s+)?о(?![\\w])",
+      "hint": "Sets up a denial before the point; open with the point.",
+      "example_bad": "Речь идёт не о деньгах, а о доверии."
+    },
+    {
+      "id": "ru-delo-ne-v",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:дело|проблема|вопрос|секрет|суть|ответ)\\s+не\\s+в\\s+[^.!?\\n]{1,50}?(?:[.,;]|\\s+[—–-])\\s*(?:а\\s+)?в(?![\\w])",
+      "hint": "Reframe formula 'the issue is not X, it is Y'; just name Y.",
+      "example_bad": "Проблема не в бюджете. А в приоритетах."
+    },
+    {
+      "id": "ru-negative-list",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Не|Ни|Без)\\s+[^.!?\\n]{1,30}\\.\\s+(?:Не|Ни|Без)\\s+[^.!?\\n]{1,30}\\.",
+      "hint": "List of what it is not before saying what it is; say what it is.",
+      "example_bad": "Без очередей. Без бумаг. Только результат.",
+      "case_sensitive": true
+    },
+    {
+      "id": "ru-negation-tail",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": ",\\s*(?:никаких|ноль|ни\\s+одн\\w+|без\\s+лишн\\w+)\\s+[а-яё]+[.!]",
+      "hint": "Clipped negative tail tacked on for punch; fold it into the sentence or drop it.",
+      "example_bad": "Настройка за минуту, никаких инструкций."
+    },
+    {
+      "id": "ru-vazhno-otmetit",
+      "category": "didactic",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:важно|стоит|следует|необходимо|нужно|хочется)\\s+(?:отметить|подчеркнуть|учитывать|учесть|помнить|понимать|обратить\\s+внимание)(?![\\w])",
+      "hint": "Warns that something matters instead of saying it; delete the lead-in, keep the fact.",
+      "example_bad": "Важно отметить, что срок истекает в пятницу."
+    },
+    {
+      "id": "ru-nelzya-ne",
+      "category": "didactic",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:нельзя\\s+не\\s+(?:отметить|упомянуть|сказать)|особо\\s+(?:следует|стоит|хочется)\\s+(?:выделить|отметить))(?![\\w])",
+      "hint": "Ceremonial lead-in before a point; start with the point.",
+      "example_bad": "Нельзя не отметить вклад команды."
+    },
+    {
+      "id": "ru-sovremennyi-mir",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])в\\s+(?:современном|сегодняшнем|нашем|быстро\\s+меняющемся|стремительно\\s+меняющемся)\\s+(?:быстро\\s+меняющемся\\s+)?мире(?![\\w])",
+      "hint": "Empty scene-setting about the modern world; start with the reader's situation.",
+      "example_bad": "В современном мире каждый бизнес нуждается в сайте."
+    },
+    {
+      "id": "ru-ne-sekret",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:не|ни\\s+для\\s+кого\\s+не)\\s+секрет,?\\s+что(?![\\w])",
+      "hint": "Claims the point is obvious; if it is, skip it, if not, prove it.",
+      "example_bad": "Не секрет, что клиенты любят скидки."
+    },
+    {
+      "id": "ru-na-segodnya",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:на\\s+(?:сегодняшний|текущий)\\s+день|в\\s+настоящее\\s+время|на\\s+данном\\s+этапе|в\\s+наши\\s+дни)(?![\\w])",
+      "hint": "Time filler; use 'сейчас' or a date, or nothing.",
+      "example_bad": "На сегодняшний день компания насчитывает 40 сотрудников."
+    },
+    {
+      "id": "ru-kak-izvestno",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:как\\s+известно|как\\s+говорится|как\\s+мы\\s+все\\s+знаем|каждый\\s+из\\s+нас)(?![\\w])",
+      "hint": "Appeal to common knowledge that adds nothing; cut it.",
+      "example_bad": "Как известно, время — деньги."
+    },
+    {
+      "id": "ru-podvodya-itog",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:подвод(?:я|им)\\s+итоги?|резюмируя|в\\s+заключение|в\\s+завершение|таким\\s+образом,\\s+можно\\s+(?:сделать\\s+вывод|сказать))(?![\\w])",
+      "hint": "Recap ending repeats what the reader just read; end on a fact, decision or next step.",
+      "example_bad": "Подводя итог, можно сказать, что проект успешен."
+    },
+    {
+      "id": "ru-heading-zaklyuchenie",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "^#{1,6}\\s*(?:Заключение|Выводы?|Итоги|Вместо\\s+заключения)\\s*$",
+      "hint": "A 'Conclusion' section in a short text is usually a rerun; replace with the next step or cut.",
+      "example_bad": "## Заключение"
+    },
+    {
+      "id": "ru-vyzovy-perspektivy",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:вызовы|проблемы|трудности)\\s+и\\s+перспективы|перспективы\\s+(?:на\\s+будущее|развития)|несмотря\\s+на\\s+(?:эти|все|возникающие)\\s+(?:вызовы|трудности|сложности))(?![\\w])",
+      "hint": "Stock 'challenges and outlook' move; name the concrete problem and the concrete plan.",
+      "example_bad": "Несмотря на эти вызовы, отрасль продолжает развиваться."
+    },
+    {
+      "id": "ru-nesmotrya-stalkivaetsya",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])несмотря\\s+на\\s+[^.!?\\n]{1,60}?,\\s*[^.!?\\n]{0,40}?сталкива\\w+\\s+с(?![\\w])",
+      "hint": "Praise-then-challenges template; state the specific problem with a date or number.",
+      "example_bad": "Несмотря на рост, город сталкивается с рядом вызовов."
+    },
+    {
+      "id": "ru-svetloe-budushchee",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:будущее\\s+выглядит\\s+(?:ярким|светлым|многообещающим)|впереди\\s+(?:нас\\s+ждут\\s+)?(?:захватывающие|увлекательные|интересные)\\s+времена|шаг\\s+в\\s+правильном\\s+направлении|продолжает\\s+процветать)(?![\\w])",
+      "hint": "Vague upbeat send-off; end on the last concrete fact or plan.",
+      "example_bad": "Будущее выглядит ярким для всей команды."
+    },
+    {
+      "id": "ru-klyuchevaya-rol",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])игра(?:ет|ют|л|ла|ли|ть)\\s+(?:ключевую|важную|важнейшую|решающую|значимую|центральную|огромную)\\s+роль(?![\\w])",
+      "hint": "Asserts importance instead of showing the effect; say what changes because of it.",
+      "example_bad": "Логистика играет ключевую роль в бизнесе."
+    },
+    {
+      "id": "ru-sluzhit-napominaniem",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:служ|выступа|явля)\\w*\\s+(?:ярким\\s+|наглядным\\s+|живым\\s+)?(?:напоминанием|свидетельством|символом|доказательством|воплощением)(?![\\w])",
+      "hint": "Turns a plain fact into a symbol; keep the fact.",
+      "example_bad": "Здание служит напоминанием о славном прошлом."
+    },
+    {
+      "id": "ru-neizgladimyi",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])неизгладим\\w*\\s+(?:след|впечатлени\\w*)|глубоко\\s+укорен[её]нн\\w*(?![\\w])",
+      "hint": "Ready-made grandeur; describe what actually stayed.",
+      "example_bad": "Поездка оставила неизгладимый след."
+    },
+    {
+      "id": "ru-znamenuet",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:знамену(?:ет|ют|я)|(?:знаковый|поворотный|переломный|исторический)\\s+(?:момент|этап|пункт|шаг))(?![\\w])",
+      "hint": "Labels an ordinary event a turning point; give the event and its effect.",
+      "example_bad": "Запуск знаменует собой новый этап развития."
+    },
+    {
+      "id": "ru-otrazhaet-priverzhennost",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:отража|демонстриру|подч[её]ркива|подчеркн|символизиру)\\w*\\s+(?:нашу\\s+|свою\\s+|е[её]\\s+|его\\s+)?(?:приверженность|стремление|значимость|важность|непреходящ\\w*|ценност\\w*)(?![\\w])",
+      "hint": "Claims a value is shown without showing it; give the act.",
+      "example_bad": "Решение отражает нашу приверженность качеству."
+    },
+    {
+      "id": "ru-vnosit-vklad",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:внос(?:ит|ят|ил|ила)\\s+(?:весомый\\s+|значительный\\s+|неоценимый\\s+|большой\\s+)?вклад|заклад(?:ывает|ывают|ыва\\w*|ет)\\s+(?:основу|фундамент))(?![\\w])",
+      "hint": "Abstract credit statement; name the result the contribution produced.",
+      "example_bad": "Проект вносит весомый вклад в развитие региона."
+    },
+    {
+      "id": "ru-deeprichastie-tail",
+      "category": "ing-rider",
+      "severity": "soft",
+      "regex": ",\\s*(?:подч[её]ркивая|отражая|символизируя|демонстрируя|обеспечивая|способствуя|формируя|укрепляя|открывая\\s+новые|создавая\\s+(?:условия|основу))(?![\\w])",
+      "hint": "Participle tail that adds fake depth; keep the fact, cut the tail or make it a real claim.",
+      "example_bad": "Цены выросли на 5%, отражая общие тенденции рынка."
+    },
+    {
+      "id": "ru-ai-vocab",
+      "category": "ai-vocabulary",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:многогранн|всеобъемлющ|неотъемлем|синергети|синерги|беспрецедентн|уникальнейш|важнейш|инновационн)\\w*",
+      "hint": "Inflated word typical of generated text; replace with a plain word or a fact.",
+      "example_bad": "Инновационный и многогранный подход."
+    },
+    {
+      "id": "ru-anons",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:давайте\\s+(?:разбер[её]мся|погрузимся|рассмотрим\\s+подробнее|начн[её]м)|погрузимся\\s+в|итак,\\s+начн[её]м|без\\s+лишних\\s+слов|перейд[её]м\\s+к\\s+главному|вот\\s+что\\s+(?:нужно|важно|стоит)\\s+знать)(?![\\w])",
+      "hint": "Announces what the text will do; just do it.",
+      "example_bad": "Давайте разберёмся, как это работает."
+    },
+    {
+      "id": "ru-fake-candor",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Честно\\?|Скажу\\s+прямо|Скажу\\s+честно|Давайте\\s+начистоту|Вот\\s+в\\s+ч[её]м\\s+(?:штука|дело)|Если\\s+по-честному|Слушайте,|Знаете\\s+что\\?)",
+      "hint": "Staged candor before an ordinary point; drop the run-up.",
+      "example_bad": "Стоит ли оно того? Честно? Зависит от вас.",
+      "case_sensitive": true
+    },
+    {
+      "id": "ru-psevdoglubina",
+      "category": "deep-saying",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:по\\s+сути(?:\\s+своей)?|в\\s+корне|настоящий\\s+вопрос\\s+в\\s+том|суть\\s+в\\s+том,?\\s+что|если\\s+копнуть\\s+глубже|в\\s+конечном\\s+сч[её]те|на\\s+самом\\s+деле\\s+важно)(?![\\w])",
+      "hint": "Pretends to reveal a deeper truth; state the plain point.",
+      "example_bad": "По сути, всё упирается в доверие."
+    },
+    {
+      "id": "ru-aforizm",
+      "category": "deep-saying",
+      "severity": "soft",
+      "regex": "(?<![\\w])[а-яё]+\\s+[—–-]\\s+(?:это\\s+)?(?:нов(?:ая|ый|ое)\\s+|настоящ(?:ая|ий|ее)\\s+)?(?:валюта|язык|топливо|нефть|архитектура|ДНК|двигатель)\\s+[а-яё]+(?![\\w])",
+      "hint": "Poster-style aphorism 'X is the currency of Y'; replace with the concrete claim behind it.",
+      "example_bad": "Внимание — новая валюта бизнеса."
+    },
+    {
+      "id": "ru-sycophancy",
+      "category": "chatbot-residue",
+      "severity": "hard",
+      "regex": "(?<![\\w])(?:(?:отличный|прекрасный|замечательный|великолепный|хороший)\\s+вопрос!|вы\\s+(?:совершенно|абсолютно)\\s+правы|(?:прекрасная|замечательная|отличная)\\s+(?:мысль|идея)!)",
+      "hint": "Flattery addressed to a chat user; remove it.",
+      "example_bad": "Отличный вопрос! Давайте посмотрим."
+    },
+    {
+      "id": "ru-chatbot-closing",
+      "category": "chatbot-residue",
+      "severity": "hard",
+      "regex": "(?<![\\w])(?:наде(?:юсь|емся),?\\s+(?:это|эта\\s+информация|данная\\s+информация|мой\\s+ответ)\\s+(?:поможет|помогла|окажется\\s+полезн\\w+|была\\s+полезн\\w+)|вот\\s+(?:краткий|подробный|обновл[её]нный|переработанный)\\s+(?:обзор|вариант|текст|ответ)\\s*:)",
+      "hint": "Chat wrapper left in a text meant to stand alone; delete it.",
+      "example_bad": "Надеюсь, это поможет! Вот краткий обзор:"
+    },
+    {
+      "id": "ru-offer-help",
+      "category": "chatbot-residue",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?<!не )(?:(?:дайте|дай)\\s+(?:мне\\s+)?знать,?\\s+если|если\\s+у\\s+вас\\s+(?:остались|возникнут|появятся)\\s+(?:ещё\\s+|еще\\s+|какие-либо\\s+)?вопросы|буду\\s+рад(?:а)?\\s+помочь|обращайтесь,?\\s+если\\s+что|готов[аы]?\\s+помочь|могу\\s+(?:вам\\s+)?помочь|помогу|подключусь|созвонимся|спишемся|можем\\s+созвониться)(?![\\w])",
+      "hint": "An assistant-style service offer may add the author's availability or work. Check the person's own stated or confirmed decision before keeping it: an incoming request or your unconfirmed read-back is not approval. An authorized offer can stay.",
+      "example_bad": "Если у вас возникнут вопросы, буду рад помочь!"
+    },
+    {
+      "id": "ru-model-disclaimer",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "(?<![\\w])(?:как\\s+(?:языковая\\s+модель|ИИ-ассистент|искусственный\\s+интеллект)|по\\s+состоянию\\s+на\\s+(?:мо[её]\\s+)?последн\\w+\\s+(?:обновлени|обучени)\\w*|на\\s+момент\\s+(?:моего\\s+)?обучения)(?![\\w])",
+      "hint": "Model talks about itself or its training cutoff; remove.",
+      "example_bad": "Как языковая модель, я не могу знать точную дату."
+    },
+    {
+      "id": "ru-speculative-gap",
+      "category": "speculation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:информаци|сведени)\\w*\\s+(?:об?\\s+[^.!?\\n]{1,30}\\s+)?(?:ограничен|скудн|отсутству)\\w*|широко\\s+не\\s+(?:задокументирован|освещ)\\w*|не\\s+афиширу\\w+\\s+(?:свою\\s+)?личную\\s+жизнь|согласно\\s+имеющимся\\s+данным)",
+      "hint": "Admits missing data, then fills the gap with a guess; say what is unknown or drop it.",
+      "example_bad": "Сведения о его детстве ограничены, вероятно, он рос в Москве."
+    },
+    {
+      "id": "ru-weasel",
+      "category": "borrowed-authority",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:по\\s+мнению|как\\s+отмечают|как\\s+считают)\\s+(?:многих\\s+|ряда\\s+)?(?:экспертов|специалистов|аналитиков|уч[её]ных|исследователей)|(?:эксперты|специалисты|аналитики|уч[её]ные|исследователи)\\s+(?:считают|отмечают|утверждают|сходятся|уверены|доказали)|исследования\\s+показывают|многие\\s+(?:считают|полагают|уверены)|ряд\\s+источников)(?![\\w])",
+      "hint": "Unnamed authority; name the source and what it found, or drop the appeal.",
+      "example_bad": "Эксперты считают, что рынок вырастет."
+    },
+    {
+      "id": "ru-yavlyaetsya",
+      "category": "copula-avoidance",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:явля(?:ется|ются|лся|лась|лось|лись|ясь)|представля(?:ет|ют)\\s+собой|выступа(?:ет|ют)\\s+в\\s+(?:роли|качестве)|нос(?:ит|ят)\\s+[а-яё]*\\s*характер)(?![\\w])",
+      "hint": "Heavy link verb; usually a dash, 'это' or a real verb is shorter.",
+      "example_bad": "Платформа является удобным инструментом."
+    },
+    {
+      "id": "ru-otglagolnoe",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:осуществля\\w*|осуществ\\w*|производ(?:ит|ят|ить|ится)|провод(?:ит|ят|ить)|оказыва\\w*|оказ(?:ать|ал\\w*)|принима\\w*|прин(?:ять|ял\\w*)|да(?:ть|вать|[её]т)|вест[иь])\\s+(?:работ\\w*|контрол\\w*|помощ\\w*|участи\\w*|оценк\\w*|расч[её]т\\w*|поддержк\\w*|мониторинг\\w*|борьб\\w*)(?![\\w])",
+      "hint": "Verb plus action noun ('оказывать помощь'); use the single verb ('помогать').",
+      "example_bad": "Мы осуществляем контроль качества."
+    },
+    {
+      "id": "ru-dannyi",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])данн(?:ый|ая|ое|ого|ой|ом|ую)(?=\\s+[а-яё])(?![\\w])",
+      "hint": "Officialese for 'этот'; use 'этот' or name the thing.",
+      "example_bad": "Данный продукт подходит всем."
+    },
+    {
+      "id": "ru-v-celyah",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:в\\s+целях|во\\s+избежание|посредством|на\\s+предмет|в\\s+связи\\s+с\\s+тем,?\\s+что|путём\\s+[а-яё]+(?:ния|тия))(?![\\w])",
+      "hint": "Officialese preposition; 'чтобы', 'через', 'потому что' are shorter.",
+      "example_bad": "В целях повышения качества мы провели аудит."
+    },
+    {
+      "id": "ru-v-ramkah",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:в\\s+рамках|в\\s+части|по\\s+линии|в\\s+области|в\\s+сфере)\\s+[а-яё]+(?![\\w])",
+      "hint": "Vague frame phrase; often the noun after it can stand alone.",
+      "example_bad": "В рамках проекта мы обновили сайт."
+    },
+    {
+      "id": "ru-genitive-chain",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:[а-яё]+(?:ия|ости|ства|ки)\\s+){3,}[а-яё]+(?:ия|ости|ства|ки|ов|ей)(?![\\w])",
+      "hint": "Chain of nouns in a row; turn one of them into a verb.",
+      "example_bad": "Утвердили порядок согласования стоимости поставки оборудования."
+    },
+    {
+      "id": "ru-usiliteli",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:очень|крайне|действительно|абсолютно|безусловно|по-настоящему|невероятно|чрезвычайно|максимально)(?![\\w])",
+      "hint": "Intensifier; delete it and see if the sentence lost anything. Keep it if it did.",
+      "example_bad": "Это действительно очень важный шаг."
+    },
+    {
+      "id": "ru-hedge-stack",
+      "category": "hedging",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:возможно|вероятно|по-видимому|в\\s+какой-то\\s+(?:степени|мере)|в\\s+определ[её]нной\\s+(?:степени|мере)),?\\s+[^.!?\\n]{0,40}?(?:может|могут|могло\\s+бы|могли\\s+бы|может\\s+быть)(?![\\w])",
+      "hint": "Two hedges on one claim; keep the one the facts support.",
+      "example_bad": "Возможно, в какой-то мере это может повлиять."
+    },
+    {
+      "id": "ru-reklama",
+      "category": "sales-language",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:захватывающ\\w*\\s+дух|потрясающ\\w*|в\\s+самом\\s+сердце|может\\s+похвастаться|богат\\w*\\s+(?:культурн|историческ)\\w*\\s+наследи\\w*|настоящ\\w*\\s+жемчужин\\w*|уникальн\\w*\\s+возможност\\w*)",
+      "hint": "Brochure language; say what is there and let the reader judge.",
+      "example_bad": "Отель расположен в самом сердце потрясающего города."
+    },
+    {
+      "id": "ru-promo-call",
+      "category": "sales-language",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:попрощайтесь\\s+с|забудьте\\s+о|представьте\\s+себе\\s+мир|раскройте\\s+(?:весь\\s+|свой\\s+)?потенциал|выведите\\s+[^.!?\\n]{1,30}\\s+на\\s+новый\\s+уровень|в\\s+считанные\\s+(?:секунды|минуты))(?![\\w])",
+      "hint": "Stock ad call; name the specific change the product makes.",
+      "example_bad": "Попрощайтесь с рутиной и выведите бизнес на новый уровень."
+    },
+    {
+      "id": "ru-promo-adjectives",
+      "category": "sales-language",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:молниеносн|бесшовн|безупречн|революционн)\\w*",
+      "hint": "Hype adjective; replace with a measured property.",
+      "example_bad": "Молниеносная и безупречная доставка."
+    },
+    {
+      "id": "ru-rhetorical-q",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:А\\s+)?(?:что\\s+если|знаете\\s+ли\\s+вы|задумывались\\s+ли\\s+вы|почему\\s+это\\s+важно|что\\s+это\\s+значит)[^?\\n]{0,80}\\?",
+      "hint": "Rhetorical setup question; make the statement it leads to.",
+      "example_bad": "Задумывались ли вы, сколько времени уходит на почту?"
+    },
+    {
+      "id": "ru-false-range",
+      "category": "structure",
+      "severity": "soft",
+      "regex": "(?<![\\w])от\\s+[^.!?\\n,]{2,30}\\s+до\\s+[^.!?\\n,]{2,30},\\s+от\\s+[^.!?\\n,]{2,30}\\s+до(?![\\w])",
+      "hint": "Double 'from X to Y' sweep across unrelated things; just list them.",
+      "example_bad": "От аналитики до стратегии, от маркетинга до продаж."
+    },
+    {
+      "id": "ru-jargon",
+      "category": "jargon",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:имплементир|валидир|итерир|скоуп|фидб[еэ]к|дедлайн|митинг|коллаборац|флоу|юзер|апрув|заапрув|онбординг|кастомиз|челлендж|аттач|асап|фоллоу-?ап|засинк|пингова|юза(?:ть|ю|ем|ет))\\w*",
+      "hint": "Borrowed or product jargon; use the plain Russian word unless the reader uses this one.",
+      "example_bad": "Валидируем гипотезы и заапрувим скоуп до дедлайна."
+    },
+    {
+      "id": "ru-meta-text",
+      "category": "meta-commentary",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:в\\s+(?:этой|данной)\\s+(?:статье|заметке|материале)\\s+(?:мы\\s+)?(?:рассмотрим|разбер[её]м|расскажем|поговорим)|как\\s+(?:мы\\s+)?(?:уже\\s+)?(?:упоминали|говорили)\\s+(?:выше|ранее)|ниже\\s+(?:мы\\s+)?(?:рассмотрим|привед[её]м))(?![\\w])",
+      "hint": "Text describes itself; talk about the subject.",
+      "example_bad": "В этой статье мы рассмотрим пять способов."
+    },
+    {
+      "id": "ru-vague-declarative",
+      "category": "vague-claim",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:последствия|ставки)\\s+(?:могут\\s+быть\\s+|будут\\s+)?(?:очень\\s+)?(?:высок|серь[её]зн|значительн)\\w*|причины\\s+(?:носят\\s+)?(?:системн|структурн|глубок)\\w*",
+      "hint": "Says something is serious without naming it; name the consequence.",
+      "example_bad": "Последствия могут быть серьёзными."
+    },
+    {
+      "id": "ru-false-agency",
+      "category": "false-agency",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:цифры|данные|факты)\\s+говорят\\s+сами\\s+за\\s+себя|(?:решение|ответ)\\s+(?:рождается|приходит|возникает)\\s+(?:само|сам)(?![\\w])",
+      "hint": "Things act on their own; name who did what.",
+      "example_bad": "Цифры говорят сами за себя."
+    },
+    {
+      "id": "ru-straight-quotes",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "\\\"[А-Яа-яЁё][^\\\"\\n]{0,80}\\\"",
+      "hint": "Straight quotes around Russian words; use «ёлочки».",
+      "example_bad": "Компания \"Ромашка\" открылась."
+    },
+    {
+      "id": "ru-office-phrases",
+      "category": "stock-phrase",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:доброго\\s+времени\\s+суток|заранее\\s+(?:спасибо|благодар\\w*)|я\\s+вас\\s+услышал\\w*|убедительн\\w+\\s+просьб\\w*|дов(?:одим|ожу|одит|ести|еду|едём|ед[её]м)\\s+до\\s+(?:вашего\\s+|вас\\s+)?сведения|обращаем\\s+ваше\\s+внимание|просьба\\s+принять\\s+к\\s+сведению|нижайше|ставим\\s+(?:вас\\s+)?в\\s+известность)(?![\\w])",
+      "hint": "Stock office phrase that readers hear as pressure or distance; greet plainly and state the request with its reason.",
+      "example_bad": "Доброго времени суток! Убедительная просьба заполнить анкету."
+    },
+    {
+      "id": "ru-stock-apology",
+      "category": "stock-phrase",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:прин[оеи]с\\w*\\s+(?:свои\\s+|наши\\s+)?(?:глубокие\\s+|искренние\\s+)?извинения\\s+за\\s+(?:доставленные|возможные|причин[её]нные)\\s+неудобства|извините\\s+за\\s+(?:доставленные|возможные)\\s+неудобства|жаль,\\s+что\\s+у\\s+вас\\s+сложилось\\s+(?:такое\\s+)?впечатление)(?![\\w])",
+      "hint": "Formula apology; name what went wrong, own it and say what happens next.",
+      "example_bad": "Приносим извинения за доставленные неудобства."
+    },
+    {
+      "id": "ru-pleonasm",
+      "category": "pleonasm",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:сво(?:й|я|ё|е|и|его|ей|ему|им|ю|ими|их)\\s+собственн\\w+|опусти\\w*\\s+вниз|подня\\w*\\s+вверх|подним\\w*\\s+вверх|бесплатн\\w+\\s+подар\\w+|ведущ\\w+\\s+лидер\\w*|внутренн\\w+\\s+интерьер\\w*|небольш\\w+\\s+миниатюр\\w*|памятн\\w+\\s+сувенир\\w*|совместн\\w+\\s+сотрудничеств\\w*|населени\\w+,?\\s+проживающ\\w*)(?![\\w])",
+      "hint": "Two words carrying one meaning; keep one.",
+      "example_bad": "Каждый участник получит памятный сувенир с логотипом."
+    },
+    {
+      "id": "ru-double-negation",
+      "category": "double-negation",
+      "severity": "soft",
+      "regex": "(?<![\\w])не\\s+(?:мог(?:у|ла|ли)?|можем|может|можете|могут|смог(?:ла|ли)?)\\s+не\\s+[а-яё]+(?![\\w])",
+      "hint": "Two negatives the reader has to decode; say it affirmatively and back it with a fact.",
+      "example_bad": "Мы не можем не отметить вклад команды."
+    },
+    {
+      "id": "ru-obvious",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:всем\\s+известно|общеизвестно|очевидно,\\s+что|само\\s+собой\\s+разумеется)(?![\\w])",
+      "hint": "Claim of obviousness: if it is known, cut it; if not, give the evidence.",
+      "example_bad": "Всем известно, что удалёнка снижает продуктивность."
+    },
+    {
+      "id": "ru-stance-marker",
+      "category": "stance-marker",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:по-моему|на\\s+мой\\s+взгляд|с\\s+моей\\s+точки\\s+зрения|честно\\s+говоря|если\\s+честно|по\\s+правде\\s+(?:говоря|сказать)|откровенно\\s+говоря)(?![\\w])",
+      "hint": "Opinion or honesty marker; keep an opinion marker only when another view is in play, drop honesty markers.",
+      "example_bad": "Если честно, мы не успеваем к пятнице."
+    },
+    {
+      "id": "ru-self-correction",
+      "category": "self-correction",
+      "severity": "soft",
+      "regex": ",\\s*(?:вернее|точнее|иначе\\s+говоря|другими\\s+словами)\\s*,",
+      "hint": "Speech repair left in writing; keep only the corrected word.",
+      "example_bad": "Мы сдали отчёт, вернее, его первую часть."
+    },
+    {
+      "id": "ru-verbal-numbering",
+      "category": "structure",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:во-первых|во-вторых|в-третьих|в-четв[её]ртых)(?![\\w])",
+      "hint": "Verbal numbering; in writing a new paragraph or a numbered list does this job (fine in a talk).",
+      "example_bad": "Во-первых, это дёшево."
+    },
+    {
+      "id": "ru-kstati",
+      "category": "aside",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:кстати|между\\s+прочим)(?![\\w])",
+      "hint": "Aside marker: a relevant point needs no flag, an irrelevant one should go; in sales copy it reads as a disguised pitch.",
+      "example_bad": "Кстати, у нас скидка на увлажнители."
+    },
+    {
+      "id": "ru-approx-number",
+      "category": "vague-number",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:более|свыше|около|примерно|приблизительно|порядка|не\\s+менее|чуть\\s+(?:более|меньше|больше))\\s+\\d",
+      "hint": "Hedge on a figure; give the figure, or the exact figure with an 'as of' date.",
+      "example_bad": "Работаем более 15 лет."
+    },
+    {
+      "id": "ru-top-n",
+      "category": "vague-number",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:вход(?:им|ит|ят)|вош(?:ли|ла|ёл|ел))\\s+в\\s+(?:топ|десятк|пят[её]рк|тройк|двадцатк)\\w*",
+      "hint": "Ranking that hides the real place; give the place, or what the size gives the reader.",
+      "example_bad": "Компания вошла в тройку перевозчиков области."
+    },
+    {
+      "id": "ru-indefinite",
+      "category": "vague-claim",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:т(?:от|а|о|е|ого|ой|ех|ем)\\s+или\\s+ин(?:ой|ая|ое|ые|ого|ых|ым)|как(?:ой|ая|ое|ие|их|им|ую|ого|ому)-либо|неки(?:й|е)|некая|некое|некоего|некоей)(?![\\w])",
+      "hint": "Indefinite word; name which ones, or cut it.",
+      "example_bad": "Мы получили какие-либо замечания по тому или иному пункту."
+    },
+    {
+      "id": "ru-hype",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:феноменальн|тектоническ|эпохальн|судьбоносн|титаническ|колоссальн|грандиозн)\\w*",
+      "hint": "Rating instead of a fact; show what happened: the figure, the consequence, who is affected.",
+      "example_bad": "Феноменальный рост подписчиков."
+    },
+    {
+      "id": "ru-corporate-cliche",
+      "category": "cliche",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:команд\\w+\\s+(?:профессионалов|единомышленников)|профессионал\\w*\\s+своего\\s+дела|решени\\w+\\s+под\\s+ключ|индивидуальн\\w+\\s+подход\\w*|широк\\w+\\s+(?:спектр\\w*|ассортимент\\w*)|динамично\\s+развивающ\\w+|амбициозн\\w+\\s+цел\\w*|дружн\\w+\\s+коллектив\\w*|нацелен\\w*\\s+на\\s+результат|на\\s+любой\\s+вкус|по\\s+цене\\s+чашки\\s+кофе|уникальн\\w+\\s+предложени\\w*|не\\s+останавлива\\w+\\s+на\\s+достигнутом|ключ\\w*\\s+к\\s+успеху|лидер\\w*\\s+рынка|эталон\\w*\\s+качества)(?![\\w])",
+      "hint": "Corporate or ad cliché; replace it with what actually happens: the step, the number, the client.",
+      "example_bad": "Мы — команда профессионалов с индивидуальным подходом."
+    },
+    {
+      "id": "ru-vacancy-cliche",
+      "category": "cliche",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:стрессоустойчив\\w*|коммуникабельн\\w*|проактивн\\w*|целеустремл[её]нн\\w*|умени\\w+\\s+работать\\s+в\\s+команде|умени\\w+\\s+писать\\s+просто\\s+о\\s+сложном)(?![\\w])",
+      "hint": "Trait label that tells the candidate nothing; describe the situation that needs the trait.",
+      "example_bad": "Требования: стрессоустойчивость, коммуникабельность."
+    },
+    {
+      "id": "ru-tot-fakt",
+      "category": "parasite",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:тот|того|тому|тем|том)\\s+факт\\w*,?\\s+что(?![\\w])",
+      "hint": "Empty frame; write the fact itself.",
+      "example_bad": "Нас беспокоит тот факт, что поставка задерживается."
+    },
+    {
+      "id": "ru-calque",
+      "category": "calque",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:будучи|когда-либо|единственн\\w+,?\\s+(?:кто|кого|кому|кем)|(?:явля\\w+|стал\\w*)\\s+(?:тем|той|теми),?\\s+(?:кто|котор\\w+))(?![\\w])",
+      "hint": "Frame copied from English or French; say it the Russian way: subject plus a plain verb.",
+      "example_bad": "Он единственный, кто когда-либо отвечал вовремя."
+    },
+    {
+      "id": "ru-calque-idiom",
+      "category": "calque",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:на\\s+(?:ежедневной|еженедельной|регулярной|постоянной|ежемесячной)\\s+основе|дела(?:ет|ют)\\s+смысл)(?![\\w])",
+      "hint": "English idiom in Russian clothes; use the Russian word: ежедневно, регулярно, имеет смысл.",
+      "example_bad": "Отчёт готовим на ежедневной основе."
+    },
+    {
+      "id": "ru-idiom-mix",
+      "category": "word-choice",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:игра(?:ет|ют|л|ла|ли|ть)\\s+(?:[а-яё]+\\s+)?значени\\w*|име(?:ет|ют|л|ла|ли|ть)\\s+(?:большую|важную|огромную|ключевую|решающую|значительную|первостепенную)\\s+роль|в\\s+трезвой\\s+памяти|постиг\\w*\\s+(?:[а-яё]+\\s+)?удач\\w*)(?![\\w])",
+      "hint": "Two idioms crossed; use one fixed form: играть роль or иметь значение.",
+      "example_bad": "Этот вопрос играет большое значение для бюджета."
+    },
+    {
+      "id": "ru-light-verb",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:им(?:еет|еют|ело|ел)\\s+место|положи(?:ть|л\\w*)\\s+конец|испытыва\\w*\\s+(?:чувство|ощущение|потребность)|оказ\\w*\\s+(?:содействие|влияние)|(?:осуществ|обеспечива|выполня|соверша)\\w*\\s+(?:[а-яё]+\\s+)?[а-яё]+(?:ние|ния|нию|нием|ции|цию|цией|ку|ки))(?![\\w])",
+      "hint": "Empty verb carrying an action noun; use the verb hidden in the noun, with a real actor.",
+      "example_bad": "Сотрудники осуществляют проверку документов."
+    },
+    {
+      "id": "ru-passive-agent",
+      "category": "passive",
+      "severity": "soft",
+      "regex": "(?<![\\w])нами\\s+(?:был[аио]?\\s+|будет\\s+)?[а-яё]+(?:ан|ян|ен|ён|т)[аоы]?(?![\\w])",
+      "hint": "Passive with «нами»; write «мы» plus an active verb.",
+      "example_bad": "Нами было установлено, что сроки сорваны."
+    },
+    {
+      "id": "ru-officialese",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:заблаговременн\\w*|вышеуказанн\\w*|вышеизложенн\\w*|вышеперечисленн\\w*|нижеследующ\\w*|по\\s+истечении|настоящим\\s+(?:сообщаем|уведомляем|информируем))(?![\\w])",
+      "hint": "Official word with a plain equivalent: заранее, этот, после, сообщаем.",
+      "example_bad": "Заблаговременно сообщаем об изменениях."
+    },
+    {
+      "id": "ru-num-ending",
+      "category": "typography",
+      "severity": "soft",
+      "regex": "(?<![\\w])\\d+-(?:ти|ми|ух|[её]х)(?![\\w])",
+      "hint": "Case ending glued to a numeral; write the number as a word (двухнедельный) or drop the ending (в 2 экземплярах).",
+      "example_bad": "Начинаем 5-ти недельный курс."
+    },
+    {
+      "id": "ru-century-digits",
+      "category": "typography",
+      "severity": "soft",
+      "regex": "(?<![\\w])\\d{1,2}(?:-?(?:м|й|го|ом))?\\s+век(?:е|у)?(?![\\w])",
+      "hint": "Century in Arabic digits; Russian norm is Roman numerals without an ending: XXI век.",
+      "example_bad": "В 21 веке всё иначе."
+    },
+    {
+      "id": "ru-hyphen-dash",
+      "category": "punctuation",
+      "severity": "soft",
+      "regex": "(?<=[а-яё»),]) - (?=[а-яё«])",
+      "hint": "Hyphen used as a dash; Russian puts a long dash with spaces: «Москва — столица».",
+      "example_bad": "Москва - столица России."
+    },
+    {
+      "id": "ru-greeting-comma",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "^[ \\t]*(?:здравствуйте|добрый\\s+(?:день|вечер)|доброе\\s+утро|привет|приветствую|уважаем\\w+\\s+[^\\n,!]{1,40})[ \\t]*,[ \\t]*$",
+      "hint": "Greeting line ending in a comma is an English calque; Russian ends it with «!» or a full stop.",
+      "example_bad": "Добрый день,"
+    },
+    {
+      "id": "ru-group-address",
+      "category": "address",
+      "severity": "soft",
+      "regex": "^[ \\t]*(?:коллеги|народ|девочки)\\s*[,!]",
+      "hint": "Collective address; name the people and give each a task, or use a plain greeting.",
+      "example_bad": "Коллеги, готовимся к выставке."
+    },
+    {
+      "id": "ru-mind-reading",
+      "category": "presumption",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:вам\\s+(?:точно\\s+|обязательно\\s+|наверняка\\s+)?понравится|вы\\s+(?:точно\\s+|обязательно\\s+)?оцените|вы\\s+наверняка|вам\\s+не\\s+составит\\s+труда)(?![\\w])",
+      "hint": "Writer decides for the reader; give the fact and let the reader judge.",
+      "example_bad": "Уверены, вам понравится наша подборка."
+    },
+    {
+      "id": "ru-answer-demand",
+      "category": "pressure",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:жд(?:у|[её]м)\\s+(?:вашего\\s+)?(?:скорейшего\\s+|положительного\\s+)?ответа|наде(?:юсь|емся)\\s+на\\s+(?:ваш\\s+)?положительн\\w+\\s+ответ|с\\s+нетерпением\\s+жд\\w+\\s+(?:вашего\\s+)?(?:ответа|решения)|ответьте\\s+обязательно)(?![\\w])",
+      "hint": "Pressure for a reply; give a reason and a date, or make answering easy.",
+      "example_bad": "Жду вашего скорейшего ответа."
+    },
+    {
+      "id": "ru-nudge",
+      "category": "pressure",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:удалось\\s+посмотреть\\?|ну\\s+что\\s+там\\?|повторно\\s+(?:направляю|напоминаю|отправляю|обращаюсь)|ещ[её]\\s+раз\\s+повторяю)",
+      "hint": "Nudge without content; restate the task, the date and why it matters.",
+      "example_bad": "Удалось посмотреть?"
+    },
+    {
+      "id": "ru-sales-pressure",
+      "category": "sales-language",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:не\\s+упустите|успейте|спешите|эксклюзивн\\w+\\s+(?:предложени|возможност)\\w*|взаимовыгодн\\w+\\s+сотрудничеств\\w*|плодотворн\\w+\\s+сотрудничеств\\w*|от\\s+которого\\s+невозможно\\s+отказаться|бывает\\s+(?:лишь|только)\\s+раз\\s+в\\s+жизни)(?![\\w])",
+      "hint": "Pressure formula; give the concrete offer, its price and its real deadline.",
+      "example_bad": "Не упустите эксклюзивное предложение!"
+    },
+    {
+      "id": "ru-fake-secret",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:открою\\s+(?:вам\\s+|тебе\\s+)?секрет|по\\s+секрету|только\\s+для\\s+(?:вас|тебя))(?![\\w])",
+      "hint": "Fake intimacy; state the offer plainly.",
+      "example_bad": "Открою секрет: в новой версии появится тёмная тема."
+    },
+    {
+      "id": "ru-stock-ending",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:у\\s+(?:вас|тебя)\\s+вс[её]\\s+получится|решение\\s+за\\s+вами|выбор\\s+за\\s+вами|главное\\s+[—–-]\\s+(?:начать|не\\s+бояться|верить))(?![\\w])",
+      "hint": "Stock moral at the end; finish on the last useful point or the next step.",
+      "example_bad": "Главное — начать, и у вас всё получится!"
+    },
+    {
+      "id": "ru-stock-idiom",
+      "category": "cliche",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:как\\s+рыба\\s+в\\s+воде|бел(?:ка|кой|ки)\\s+в\\s+колесе|верхушк\\w+\\s+айсберга|сапожник\\w*\\s+без\\s+сапог|эффект\\w*\\s+бабочки)(?![\\w])",
+      "hint": "Worn idiom used as an image; describe the actual scene.",
+      "example_bad": "Опоздания курьеров — только верхушка айсберга."
+    },
+    {
+      "id": "ru-accusing-headline",
+      "category": "headline",
+      "severity": "soft",
+      "regex": "(?<![\\w])ошиб(?:к\\w*|ок),?\\s+(?:которые\\s+)?(?:вы|ты)\\s+(?:соверша|допуска|дела)\\w*",
+      "hint": "Headline that accuses the reader; promise the fix instead.",
+      "example_bad": "5 ошибок, которые вы допускаете при заказе мебели"
+    },
+    {
+      "id": "ru-condescension",
+      "category": "tone",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:даже\\s+реб[её]нок|каждый\\s+(?:уважающий\\s+себя|образованный|нормальный)\\s+[а-яё]+)(?![\\w])",
+      "hint": "Talks down to the reader; explain plainly and let them judge the difficulty.",
+      "example_bad": "С этим справится даже ребёнок."
+    },
+    {
+      "id": "ru-nominal-list-item",
+      "category": "structure",
+      "severity": "soft",
+      "regex": "^[ \\t]*(?:[-–—•*]|\\d+[.)])[ \\t]+(?:обеспечение|реализация|осуществление|организация|проведение|оказание|предоставление)(?![\\w])",
+      "hint": "List item opens with a verbal noun; start with a verb: «подберём ткань».",
+      "example_bad": "- Осуществление подбора ткани"
+    },
+    {
+      "id": "ru-urgency",
+      "category": "pressure",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:в\\s+кратчайшие\\s+сроки|в\\s+сжатые\\s+сроки|как\\s+можно\\s+(?:скорее|быстрее)|нужно\\s+(?:было\\s+)?вчера|в\\s+(?:самое\\s+)?ближайшее\\s+время)(?![\\w])",
+      "hint": "Urgency without a date; give the date and the reason.",
+      "example_bad": "Пришлите акт в кратчайшие сроки."
+    },
+    {
+      "id": "ru-stock-wishes",
+      "category": "cliche",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:от\\s+всей\\s+души|крепкого\\s+здоровья|финансового\\s+благополучия|ярких\\s+впечатлений|счастья\\s+и\\s+успехов|успехов\\s+во\\s+вс[её]м|светлый\\s+человек)(?![\\w])",
+      "hint": "Greeting cliché; write a wish only this person would recognise.",
+      "example_bad": "Желаю счастья и успехов во всём!"
+    },
+    {
+      "id": "ru-time-opener",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))В\\s+(?:последнее\\s+время|эпоху\\s+[а-яё]+|наше\\s+время)(?![\\w])",
+      "hint": "Time opener that adds nothing; give the figure or event that proves the trend.",
+      "example_bad": "В последнее время всё больше людей покупают самокаты."
+    },
+    {
+      "id": "ru-placeholder",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "\\[(?:ваше|ваш|вставьте|имя|название|компания|дата)(?:\\s[^\\]\\n]{0,40})?\\]",
+      "hint": "Template slot was never filled; put in the real value or ask for it.",
+      "example_bad": "С уважением, [Ваше имя]"
+    },
+    {
+      "id": "ru-todo-marker",
+      "category": "draft-leftover",
+      "severity": "soft",
+      "regex": "\\[(?:нужно|уточнить|проверить)[:\\s][^\\]\\n]{0,80}\\]",
+      "hint": "Open gap marker ([нужно: …]) is still in the text; resolve it before the text goes out.",
+      "example_bad": "Запуск [нужно: дата запуска]."
+    },
+    {
+      "id": "ru-triple-list",
+      "category": "structure",
+      "severity": "soft",
+      "regex": "(?<![\\w])([^\\W\\d_]{3,}),\\s+([^\\W\\d_]{3,}),?\\s+(?:и|или)\\s+([^\\W\\d_]{3,})(?![\\w])",
+      "hint": "Three one-word items in a row; check each adds a separate idea, otherwise cut to what is true.",
+      "example_bad": "Быстро, надёжно и инновационно."
+    },
+    {
+      "id": "ru-merge-field",
+      "category": "draft-leftover",
+      "severity": "soft",
+      "regex": "\\{\\{?\\s*(?:имя|фамилия|компания)\\s*\\}?\\}|%имя%",
+      "hint": "Unfilled mail-merge field; fill it or remove the greeting.",
+      "example_bad": "Здравствуйте, {имя}!"
+    },
+    {
+      "id": "ru-mail-clutter",
+      "category": "draft-leftover",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:отправлено\\s+с\\s+(?:моего\\s+)?(?:iphone|айфона|телефона|android)|проверено\\s+антивирусом)(?![\\w])",
+      "hint": "Client signature clutter; delete it.",
+      "example_bad": "Отправлено с моего iPhone"
+    },
+    {
+      "id": "ru-link-anchor",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "\\[(?:здесь|тут|сюда|по\\s+ссылке|ссылка|ссылке)\\]\\(",
+      "hint": "Link text says nothing about the target; label the link with what the reader gets.",
+      "example_bad": "Подробности [здесь](https://example.com)."
+    },
+    {
+      "id": "ru-latin-homoglyph",
+      "category": "typography",
+      "severity": "hard",
+      "regex": "(?<=[а-яё])[aceopxyk](?=[а-яё])",
+      "hint": "A Latin letter inside a Cyrillic word; retype the word in Cyrillic.",
+      "example_bad": "Пpивет, коллеги."
+    },
+    {
+      "id": "ru-offer-more",
+      "category": "chatbot-residue",
+      "severity": "hard",
+      "regex": "(?<![\\w])(?:хотите,?\\s+(?:чтобы\\s+я|я\\s+(?:сделаю|подготовлю|напишу|сокращу))|(?:если\\s+(?:нужно|хотите|надо)|при\\s+желании),?\\s+(?:я\\s+)?(?:могу|сделаю|подготовлю|напишу|доработаю|адаптирую)|могу\\s+(?:также\\s+)?(?:подготовить|сделать|написать|адаптировать)\\s+(?:вариант|версию|ещё))(?![\\w])",
+      "hint": "The assistant's offer to do more stayed in the text; delete it.",
+      "example_bad": "Если нужно, могу подготовить версию для сайта."
+    },
+    {
+      "id": "ru-variant-label",
+      "category": "chatbot-residue",
+      "severity": "soft",
+      "regex": "^[ \\t]*(?:\\*\\*)?(?:вот\\s+(?:несколько\\s+)?(?:вариант|пример|черновик|текст)\\w*[^\\n]{0,60}:|вариант\\s+\\d)",
+      "hint": "Packaging of a chat answer; drop the lead-in, and turn variant labels into destination labels if the variants stay.",
+      "example_bad": "Вот вариант текста для рассылки:"
+    },
+    {
+      "id": "ru-attention-paid",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:особое|отдельное|пристальное|большое)\\s+)?(?:внимание\\s+уделя\\w*|внимание\\s+уделено|посвящен[аоы]?\\s+(?:анализу|изучению|рассмотрению|разработке))(?![\\w])",
+      "hint": "Report frame around the action; say what is analysed or done, with a verb.",
+      "example_bad": "Отдельное внимание уделяется вопросам логистики."
+    },
+    {
+      "id": "ru-focus-calque",
+      "category": "calque",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:исследовани|работ|стать|доклад|курс|проект)\\w*\\s+фокусиру\\w+\\s+на(?![\\w])",
+      "hint": "Calque of an English 'focuses on'; write what the work studies or covers.",
+      "example_bad": "Исследование фокусируется на малом бизнесе."
+    },
+    {
+      "id": "ru-important-step",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:важн|значим|решающ|серь[её]зн|больш)\\w*\\s+шаг\\w*\\s+(?:к|в\\s+сторону|на\\s+пути)(?![\\w])",
+      "hint": "Rates an event instead of naming what changed; state the change.",
+      "example_bad": "Это важный шаг к цифровизации."
+    },
+    {
+      "id": "ru-takim-obrazom",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))Таким\\s+образом,",
+      "hint": "Conclusion connector at the start of a sentence; most of the time the sentence stands without it. Not a tell in academic text.",
+      "example_bad": "Таким образом, мы закрыли квартал."
+    },
+    {
+      "id": "ru-v-svyazi-s-etim",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])в\\s+связи\\s+с\\s+этим(?![\\w])(?!\\s+[а-яё]+(?:ом|ем|ём|ой|ей|ою|ею|ами|ями|ым|им)(?![\\w]))",
+      "hint": "Official link phrase; say the cause in plain words or drop it. Acceptable in formal business letters.",
+      "example_bad": "В связи с этим мы меняем график."
+    },
+    {
+      "id": "ru-modal-fog",
+      "category": "hedging",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:может\\s+стать|может\\s+быть\\s+полезн\\w*|может\\s+привести\\s+к|способ(?:ен|на|ны|но)\\s+(?:обеспечить|повлиять|стать|улучшить)|призван\\w*\\s+(?:решить|обеспечить|помочь|улучшить)|позволя(?:ет|ют)\\s+достичь)(?![\\w])",
+      "hint": "Possibility stated as a habit; keep one hedge per claim, where the doubt is real, and never turn a possibility into a promise.",
+      "example_bad": "Новая функция призвана решить проблему очередей."
+    },
+    {
+      "id": "ru-new-horizons",
+      "category": "cliche",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:откр(?:ывает|ывают|оет|оют|ыл[аио]?)\\s+(?:новые\\s+|широкие\\s+)?(?:горизонты|перспективы|возможности)|(?:вывести|выводит|выйти|выходит)\\s+[^.!?\\n]{0,25}?на\\s+новый\\s+уровень|расшир\\w+\\s+границы|комплексн\\w+\\s+(?:подход|решени)\\w*)(?![\\w])",
+      "hint": "Motivational stock phrase; name the concrete result the text gives, otherwise cut it.",
+      "example_bad": "Курс поможет вывести продажи на новый уровень."
+    },
+    {
+      "id": "ru-context-frame",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:В\\s+свете\\s+(?:последних|недавних|текущих|этих|новых|событий|изменений)|На\\s+фоне\\s+(?:роста|падения|снижения|кризиса|санкций|пандемии|последних|растущ\\w+)|Принимая\\s+во\\s+внимание|В\\s+условиях\\s+(?:[а-яё]+\\s+)?(?:конкуренци|неопредел[её]нност|кризис|рынк|санкци|цифровизаци|глобализаци|турбулентност|нестабильност)\\w*)",
+      "hint": "Scene-setting frame before the point; start with the fact. Keep it when it names the real cause.",
+      "example_bad": "В условиях высокой конкуренции компании ищут клиентов."
+    },
+    {
+      "id": "ru-truism-dash",
+      "category": "deep-saying",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:самое\\s+(?:важное|главное)|первый\\s+шаг|главный\\s+секрет|ключ\\s+к\\s+успеху)\\s+[—–-]\\s+это(?![\\w])",
+      "hint": "Truism dressed as a revelation; state the advice itself.",
+      "example_bad": "Самое важное — это начать."
+    },
+    {
+      "id": "ru-pseudo-therapy",
+      "category": "tone",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:и\\s+это\\s+(?:нормально|окей|ок)|вы\\s+не\\s+одиноки|ты\\s+не\\s+(?:один|одна)|ты\\s+имеешь\\s+право|позвольте\\s+себе|это\\s+не\\s+слабость|давайте\\s+признаем)(?![\\w])",
+      "hint": "Self-help reassurance in a text that is not about feelings; write the advice or the fact plainly.",
+      "example_bad": "Не все успевают. И это нормально."
+    },
+    {
+      "id": "ru-honesty-label",
+      "category": "tone",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:честн(?:ый|ого|ым|ом)\\s+(?:список|разбор|рейтинг)|буду\\s+(?:с\\s+(?:вами|тобой)\\s+)?откровен\\w*|без\\s+прикрас|без\\s+воды\\s+и\\s+(?:пафоса|маркетинга|лишних\\s+слов|рекламы)|объективн\\w+\\s+разбор\\w*|это\\s+не\\s+очередн\\w+)(?![\\w])",
+      "hint": "The text labels itself honest or different instead of showing it; delete the label.",
+      "example_bad": "Вот честный список инструментов."
+    },
+    {
+      "id": "ru-tail-negations",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "без\\s+[а-яё]+,\\s*(?:и\\s+)?без\\s+[а-яё]+,\\s*(?:и\\s+)?без\\s+[а-яё]+",
+      "hint": "A run of three or more 'без X' tails; keep the one that states a real condition and do not replace the rest with new tails.",
+      "example_bad": "Отчёт без воды, без догадок, без пафоса."
+    },
+    {
+      "id": "ru-story-moral",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:мораль\\s+(?:этой|всей\\s+этой|сей)\\s+истори\\w*|(?:эта|вся\\s+эта)\\s+истори[яи]\\s+(?:учит|научила|учила)\\s+(?:нас|нам|меня)|эта\\s+истори[яи]\\s+о\\s+том,\\s+что)(?![\\w])",
+      "hint": "The narrator spells out the lesson; end on the event or detail before it.",
+      "example_bad": "Эта история учит нас, что планирование решает всё."
+    },
+    {
+      "id": "ru-model-handwriting",
+      "category": "ai-vocabulary",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:что\\s+дела(?:ет|ют)\\s+(?:его|её|ее|их)|заставля\\w+\\s+задуматься|стал[аои]?\\s+символом|стал[аои]?\\s+настоящ\\w+\\s+(?:открытием|прорывом|находкой|событием)|заслужива\\w+\\s+внимани\\w*|вдохновля\\w*\\s+(?:на\\s+)?(?:новые|многих|каждого)|незабываем\\w+|оставля\\w+\\s+(?:неизгладим\\w+|яркое|сильное|приятное)\\s+впечатлени\\w*|напомина\\w+\\s+(?:нам\\s+)?о\\s+важност\\w+)(?![\\w])",
+      "hint": "Turn common in recent model prose; one is ordinary, two or more different ones in a text are a signal. Say the fact behind it.",
+      "example_bad": "Поездка вдохновляет и дарит незабываемые впечатления."
+    },
+    {
+      "id": "ru-eto-pozvolyaet",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Это|Такой\\s+подход|Всё\\s+это|Все\\s+это)\\s+(?:позволя\\w+|обеспечива\\w+|да[её]т\\s+возможность)",
+      "hint": "'Это позволяет…' links a benefit to nothing in particular; name what does it and for whom.",
+      "example_bad": "Это позволяет сэкономить время."
+    },
+    {
+      "id": "ru-dlya-teh-kto",
+      "category": "sales-language",
+      "severity": "soft",
+      "regex": "(?<![\\w])для\\s+тех,?\\s+кто\\s+(?:хочет|стремится|ценит|мечтает|любит)(?![\\w])",
+      "hint": "Audience by wish instead of by situation; say who the reader is and what they do.",
+      "example_bad": "Курс для тех, кто хочет расти."
+    },
+    {
+      "id": "ru-predstavte",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))Представьте(?:\\s+себе)?(?:,|\\s+что|\\s+ситуацию)",
+      "hint": "Invitation to imagine instead of the case itself; give the case.",
+      "example_bad": "Представьте, что вы управляете складом."
+    },
+    {
+      "id": "ru-socratic-pair",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:А\\s+)?(?:Зачем|Почему|Что\\s+дальше|И\\s+что|Итог|Результат|Секрет|Подвох)\\?\\s+[^.!?\\n]{1,40}[.!]",
+      "hint": "One-word question answered at once; join them into a statement.",
+      "example_bad": "Зачем? Потому что так быстрее."
+    },
+    {
+      "id": "ru-calque-collocation",
+      "category": "calque",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:адресова\\w*\\s+(?:проблем|вопрос|задач|бол|запрос)\\w*|достав(?:ить|ля\\w*|ил\\w*)\\s+ценность(?![\\w])|встрет(?:ить|ил\\w*)\\s+(?:дедлайн|срок)\\w*|уточн\\w+\\s+(?:маркетингов\\w+\\s+)?усили\\w*)(?![\\w])",
+      "hint": "Russian words in English word partnership; use the Russian collocation (решить проблему, успеть к сроку).",
+      "example_bad": "Команда адресовала проблему клиента."
+    },
+    {
+      "id": "ru-comma-calque",
+      "category": "punctuation",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Однако|Благодаря\\s+этому|Поэтому|Также|Тем\\s+не\\s+менее|Затем|В\\s+(?:19|20)\\d\\d\\s+году),\\s(?!\\s*(?:когда|котор\\w+|где|как|что|если|пока|\\d))",
+      "hint": "Comma after an opener that Russian does not set off; delete the comma.",
+      "example_bad": "В 2024 году, компания выросла."
+    },
+    {
+      "id": "ru-title-case-heading",
+      "category": "typography",
+      "severity": "soft",
+      "regex": "^#{1,6}\\s+(?=[^\\n]*(?<![\\w])[А-ЯЁ][а-яё]*(?:ние|ость|ция|ый|ая|ое|ые|яя|ать|ить|еть)(?![\\w]))[А-ЯЁ][а-яё]+(?:\\s+(?:[а-яё]{1,2}\\s+)?[А-ЯЁ][а-яё]+){2,}\\s*$",
+      "hint": "Russian headings capitalise only the first word and proper names.",
+      "example_bad": "## Ранняя Жизнь и Образование",
+      "case_sensitive": true
+    },
+    {
+      "id": "ru-number-format",
+      "category": "typography",
+      "severity": "soft",
+      "regex": "(?<![\\w])\\$\\s?\\d|(?<![\\d,.])\\d{1,3}(?:,\\d{3})+(?![\\d,])",
+      "hint": "English number format in Russian text: a currency sign before the number, or a comma that a Russian reader takes for a decimal point. Write «186 млн долларов», «1000» or «1 000».",
+      "example_bad": "Выручка составила $186 млн."
+    },
+    {
+      "id": "ru-vse-chashche",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))Вс[её]\\s+(?:чаще|больше\\s+(?:людей|компаний))",
+      "hint": "Trend opener without a figure; give the figure and its date, or start with the point.",
+      "example_bad": "Всё чаще компании переходят в облако."
+    },
+    {
+      "id": "ru-colon-reveal",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Самое\\s+(?:интересное|главное|важное|сложное)|Главная\\s+(?:деталь|фишка)|Фишка\\s+в\\s+том|Секрет\\s+прост|Подвох|Нюанс)\\s*:\\s",
+      "hint": "Drum-roll colon before the point; write it as a plain sentence.",
+      "example_bad": "Самое интересное: бот учится сам."
+    }
+  ]
+}

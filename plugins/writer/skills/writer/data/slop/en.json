@@ -1,0 +1,869 @@
+{
+  "language": "en",
+  "version": 1,
+  "patterns": [
+    {
+      "id": "en-not-just-its",
+      "category": "contrast-formula",
+      "severity": "hard",
+      "regex": "(?<![\\w])(?:it'?s|it\\s+is|this\\s+is|that'?s|this\\s+isn'?t|it\\s+isn'?t)\\s+(?:not\\s+)?(?:just|only|merely|simply)\\s+[^.!?\\n]{1,60}?[,;:—–-]\\s*(?:it'?s|it\\s+is|this\\s+is|but|rather)(?![\\w])",
+      "hint": "Contrast against a claim nobody made; state the positive half on its own.",
+      "example_bad": "It's not just a tool, it's a movement."
+    },
+    {
+      "id": "en-not-only-but-also",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?<![\\w])not\\s+only\\s+[^.!?\\n]{1,60}?\\s+but(?![\\w])",
+      "hint": "Additive contrast; fine once, a tell when it repeats.",
+      "example_bad": "The app not only saves time but also delights users."
+    },
+    {
+      "id": "en-isnt-x-its-y",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:isn'?t|is\\s+not|wasn'?t|was\\s+not|aren'?t)\\s+[^.!?\\n]{1,40}?[.;,—–]\\s*(?:it'?s|it\\s+is|it\\s+was|they'?re)\\s",
+      "hint": "Reframe 'X isn't the problem. It's Y'; name Y directly.",
+      "example_bad": "The model isn't the problem. It's the data."
+    },
+    {
+      "id": "en-not-because",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?<![\\w])not\\s+because\\s+[^.!?\\n]{1,50}?[.,;]\\s*(?:but\\s+)?because(?![\\w])",
+      "hint": "Telegraphed reversal of reasons; give the real reason.",
+      "example_bad": "Not because it's cheap. Because it works."
+    },
+    {
+      "id": "en-negative-list",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Not|No)\\s+[^.!?\\n]{1,30}\\.\\s+(?:Not|No)\\s+[^.!?\\n]{1,30}\\.",
+      "hint": "List of what it is not before what it is; say what it is.",
+      "example_bad": "Not a plan. Not a promise. A result.",
+      "case_sensitive": true
+    },
+    {
+      "id": "en-stops-being",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?<![\\w])stops?\\s+being\\s+[^.!?\\n]{1,30}?\\s+and\\s+starts?\\s+being(?![\\w])",
+      "hint": "Staged transformation arc; describe what changed and when.",
+      "example_bad": "Work stops being a chore and starts being a joy."
+    },
+    {
+      "id": "en-negation-tail",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": ",\\s+no\\s+(?:guessing|fuss|setup|config(?:uration)?|strings\\s+attached|code|hassle)[.!]",
+      "hint": "Clipped negative tail added for punch; fold it into the sentence.",
+      "example_bad": "Deploys in one click, no fuss."
+    },
+    {
+      "id": "en-staged-opener",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:let'?s\\s+(?:dive|delve|deep[- ]dive|jump)\\s+(?:in|into|right\\s+in)|without\\s+further\\s+ado|here'?s\\s+what\\s+you\\s+need\\s+to\\s+know|let'?s\\s+break\\s+(?:it|this)\\s+down|let'?s\\s+explore)(?![\\w])",
+      "hint": "Announces the content instead of giving it; cut to the content.",
+      "example_bad": "Let's dive into the details."
+    },
+    {
+      "id": "en-heres-the-thing",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:here'?s\\s+(?:the\\s+thing|the\\s+deal|the\\s+problem|what\\s+i\\s+mean|why\\s+(?:that|this|it)\\s+matters|what\\s+nobody\\s+tells\\s+you)|the\\s+(?:uncomfortable|hard|simple|honest)\\s+truth\\s+is|let\\s+me\\s+be\\s+clear|real\\s+talk|let'?s\\s+be\\s+honest|i'?ll\\s+be\\s+honest)(?![\\w])",
+      "hint": "Throat-clearing before the point; open with the point.",
+      "example_bad": "Here's the thing: pricing is broken."
+    },
+    {
+      "id": "en-staged-candor",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Honestly|Truthfully|Frankly|Look|Real\\s+talk)(?:\\?|,\\s)",
+      "hint": "Standalone candor opener; inside casual talk it's fine, as a set-up it is a tell.",
+      "example_bad": "Is it worth it? Honestly? Depends.",
+      "case_sensitive": true
+    },
+    {
+      "id": "en-emphasis-crutch",
+      "category": "emphasis",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:let\\s+that\\s+sink\\s+in|read\\s+that\\s+again|full\\s+stop\\.|make\\s+no\\s+mistake|this\\s+matters\\s+because|that'?s\\s+the\\s+real\\s+(?:win|story|lesson)|this\\s+changes\\s+everything|this\\s+is\\s+huge)",
+      "hint": "Tells the reader to be impressed; give the fact that would impress them.",
+      "example_bad": "We cut costs by half. Let that sink in."
+    },
+    {
+      "id": "en-important-to-note",
+      "category": "didactic",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:it(?:'s|\\s+is)\\s+(?:worth|important\\s+to|crucial\\s+to)\\s+(?:not(?:ing|e)|mention(?:ing)?|remember(?:ing)?|highlight(?:ing)?|point(?:ing)?\\s+out)|it\\s+should\\s+be\\s+noted)(?![\\w])",
+      "hint": "Flags importance instead of stating the thing; delete the lead-in.",
+      "example_bad": "It's worth noting that the deadline moved."
+    },
+    {
+      "id": "en-todays-world",
+      "category": "filler",
+      "severity": "hard",
+      "regex": "(?<![\\w])in\\s+(?:today'?s|an?)\\s+(?:fast[- ]paced|ever[- ](?:changing|evolving)|rapidly\\s+(?:evolving|changing)|increasingly\\s+(?:digital|connected)|digital|modern)\\s+(?:world|landscape|age|era|environment)(?![\\w])",
+      "hint": "Stock scene-setting that fits any topic; start with the reader's concrete situation.",
+      "example_bad": "In today's fast-paced world, teams need better tools."
+    },
+    {
+      "id": "en-filler-phrase",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:at\\s+the\\s+end\\s+of\\s+the\\s+day|when\\s+it\\s+comes\\s+to|in\\s+a\\s+world\\s+where|the\\s+reality\\s+is|in\\s+terms\\s+of|with\\s+regard\\s+to|going\\s+forward|moving\\s+forward)(?![\\w])",
+      "hint": "Phrase that delays the point; cut it or say the specific thing.",
+      "example_bad": "When it comes to pricing, at the end of the day, value wins."
+    },
+    {
+      "id": "en-in-conclusion",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:in\\s+conclusion|in\\s+summary|to\\s+sum\\s+(?:up|it\\s+up)|all\\s+in\\s+all|overall,|ultimately,)",
+      "hint": "Recap ending; finish on the last concrete point or next step.",
+      "example_bad": "In conclusion, the project was a success."
+    },
+    {
+      "id": "en-heading-conclusion",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "^#{1,6}\\s*(?:Conclusion|Final\\s+Thoughts|Key\\s+Takeaways|Summary|Wrapping\\s+Up)\\s*$",
+      "hint": "Conclusion section that reruns the text; replace with the next step or cut.",
+      "example_bad": "## Final Thoughts"
+    },
+    {
+      "id": "en-challenges-outlook",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:despite\\s+(?:these|its|the|such)\\s+challenges|challenges\\s+and\\s+(?:opportunities|legacy)|future\\s+outlook|continues?\\s+to\\s+thrive)(?![\\w])",
+      "hint": "Stock 'challenges and outlook' move; name the actual problem and plan.",
+      "example_bad": "Despite these challenges, the town continues to thrive."
+    },
+    {
+      "id": "en-bright-future",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:the\\s+future\\s+(?:looks|is)\\s+(?:bright|promising)|exciting\\s+times\\s+(?:lie\\s+)?ahead|a\\s+step\\s+in\\s+the\\s+right\\s+direction|only\\s+time\\s+will\\s+tell)(?![\\w])",
+      "hint": "Upbeat send-off with no content; end on the last real fact.",
+      "example_bad": "The future looks bright for the team."
+    },
+    {
+      "id": "en-pivotal-role",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])play(?:s|ed|ing)?\\s+an?\\s+(?:pivotal|crucial|key|vital|central|significant|instrumental|critical)\\s+role(?![\\w])",
+      "hint": "Asserts importance; say what depends on it.",
+      "example_bad": "Logistics plays a pivotal role in retail."
+    },
+    {
+      "id": "en-testament",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:stands|serves)\\s+as\\s+an?\\s+(?:testament|reminder|symbol|beacon)|a\\s+testament\\s+to|marks?\\s+a\\s+(?:pivotal|significant|turning|watershed)\\s+(?:moment|point|milestone)|indelible\\s+mark|lasting\\s+legacy|setting\\s+the\\s+stage\\s+for)(?![\\w])",
+      "hint": "Inflates a fact into a symbol or milestone; keep the fact.",
+      "example_bad": "The bridge stands as a testament to human ambition."
+    },
+    {
+      "id": "en-underscores-importance",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:underscor|highlight|emphasiz|reflect|solidif)(?:es|ing|ed|ies|ied|y|e)?\\s+(?:the\\s+|its\\s+|our\\s+|their\\s+)?(?:importance|significance|commitment|position|need)(?![\\w])",
+      "hint": "Claims a meaning is shown; show the act instead.",
+      "example_bad": "The move underscores our commitment to users."
+    },
+    {
+      "id": "en-ing-rider",
+      "category": "ing-rider",
+      "severity": "soft",
+      "regex": ",\\s+(?:highlighting|underscoring|emphasizing|reflecting|symbolizing|showcasing|fostering|cultivating|contributing\\s+to|ensuring|solidifying)(?![\\w])",
+      "hint": "Trailing -ing phrase adds fake depth; cut it or state a real consequence.",
+      "example_bad": "Sales rose 4%, reflecting strong market confidence."
+    },
+    {
+      "id": "en-ai-vocab",
+      "category": "ai-vocabulary",
+      "severity": "soft",
+      "words": [
+        "delve",
+        "delves",
+        "delved",
+        "delving",
+        "tapestry",
+        "testament",
+        "realm",
+        "realms",
+        "multifaceted",
+        "meticulous",
+        "meticulously",
+        "intricate",
+        "intricacies",
+        "interplay",
+        "underscore",
+        "underscores",
+        "underscored",
+        "underscoring",
+        "showcase",
+        "showcases",
+        "showcased",
+        "showcasing",
+        "garner",
+        "garners",
+        "garnered",
+        "bolster",
+        "bolstered",
+        "vibrant",
+        "pivotal",
+        "paramount",
+        "beacon",
+        "embark",
+        "embarks",
+        "harness",
+        "harnessing",
+        "elevate",
+        "elevates",
+        "supercharge",
+        "ever-evolving",
+        "synergy",
+        "synergies",
+        "holistic",
+        "enduring",
+        "commendable"
+      ],
+      "hint": "Word models overuse; swap for a plain word, especially when several cluster.",
+      "example_bad": "We delve into a vibrant tapestry of ideas."
+    },
+    {
+      "id": "en-business-jargon",
+      "category": "jargon",
+      "severity": "soft",
+      "words": [
+        "leverage",
+        "leverages",
+        "leveraged",
+        "leveraging",
+        "utilize",
+        "utilizes",
+        "utilizing",
+        "facilitate",
+        "facilitates",
+        "empower",
+        "empowers",
+        "empowering",
+        "streamline",
+        "streamlines",
+        "streamlined",
+        "paradigm shift",
+        "game changer",
+        "game-changer",
+        "cutting-edge",
+        "best-in-class",
+        "move the needle",
+        "circle back",
+        "deep dive",
+        "lean into",
+        "double down",
+        "low-hanging fruit",
+        "value-add",
+        "synergize"
+      ],
+      "hint": "Corporate jargon; use the plain verb or noun.",
+      "example_bad": "We leverage synergies to streamline workflows."
+    },
+    {
+      "id": "en-landscape",
+      "category": "ai-vocabulary",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:navigat(?:e|es|ing)\\s+(?:the\\s+)?(?:complex(?:ities)?|challenges|landscape|waters)|(?:evolving|ever[- ]changing|complex|digital|competitive|shifting)\\s+landscape)(?![\\w])",
+      "hint": "Abstract 'landscape' metaphor; name the market, field or situation.",
+      "example_bad": "Navigating the evolving landscape of AI."
+    },
+    {
+      "id": "en-serves-as",
+      "category": "copula-avoidance",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:serves|stands|functions|operates|acts)\\s+as\\s+(?:a|an|the)|boasts\\s+(?:a|an|over|more|some))(?![\\w])",
+      "hint": "Long verb in place of 'is' or 'has'; use the short one.",
+      "example_bad": "The hall serves as a venue and boasts 300 seats."
+    },
+    {
+      "id": "en-sales-language",
+      "category": "sales-language",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:nestled\\s+(?:in|within|among)|in\\s+the\\s+heart\\s+of|breathtaking|must[- ]visit|stunning|rich\\s+(?:cultural\\s+)?(?:heritage|history)|natural\\s+beauty|world[- ]class|diverse\\s+array)(?![\\w])",
+      "hint": "Brochure wording; state what the place or product is and has.",
+      "example_bad": "Nestled in the heart of the city, the hotel offers stunning views."
+    },
+    {
+      "id": "en-promo-call",
+      "category": "sales-language",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:say\\s+goodbye\\s+to|meet\\s+your\\s+new|unlock\\s+the\\s+(?:full\\s+)?(?:power|potential)\\s+of|take\\s+[^.!?\\n]{1,25}?\\s+to\\s+the\\s+next\\s+level|in\\s+seconds,?\\s+not\\s+(?:hours|days)|blazing[- ]fast|effortless(?:ly)?|seamless(?:ly)?|next[- ]level)(?![\\w])",
+      "hint": "Stock ad phrase; replace with the specific change and a number.",
+      "example_bad": "Say goodbye to busywork and unlock the power of automation."
+    },
+    {
+      "id": "en-weasel",
+      "category": "borrowed-authority",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:experts|analysts|researchers|scientists|critics|observers)\\s+(?:say|believe|argue|agree|suggest|note|have\\s+(?:noted|cited))|studies\\s+(?:show|suggest|have\\s+shown)|research\\s+(?:shows|suggests)|(?:many|some)\\s+(?:argue|believe|would\\s+say)|widely\\s+regarded\\s+as|industry\\s+reports)(?![\\w])",
+      "hint": "Unnamed authority; name the source and its finding, or drop the claim.",
+      "example_bad": "Experts agree that remote work boosts output."
+    },
+    {
+      "id": "en-sycophancy",
+      "category": "chatbot-residue",
+      "severity": "hard",
+      "regex": "(?<![\\w])(?:great\\s+question|(?:you'?re|you\\s+are)\\s+(?:absolutely|completely|totally)\\s+right|what\\s+a\\s+(?:great|fantastic|wonderful)\\s+(?:question|idea)|excellent\\s+(?:point|observation)!)",
+      "hint": "Flattery aimed at a chat user; remove.",
+      "example_bad": "Great question! The answer is simple."
+    },
+    {
+      "id": "en-chatbot-residue",
+      "category": "chatbot-residue",
+      "severity": "hard",
+      "regex": "(?<![\\w])(?:i\\s+hope\\s+(?:this|that)\\s+(?:helps|was\\s+helpful|is\\s+helpful)|here\\s+is\\s+(?:a|an|the|your)\\s+(?:revised|updated|rewritten|improved|polished)\\s+(?:version|draft)|would\\s+you\\s+like\\s+me\\s+to|should\\s+i\\s+continue\\?|(?:certainly|of\\s+course|absolutely|sure)!\\s+here\\s+(?:is|are))",
+      "hint": "Chat wrapper left in standalone text; delete it, keep the content.",
+      "example_bad": "Certainly! Here is the revised version."
+    },
+    {
+      "id": "en-offer-help",
+      "category": "chatbot-residue",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:let\\s+me\\s+know\\s+if\\s+you\\s+(?:have\\s+any\\s+(?:other\\s+|more\\s+)?questions|need\\s+(?:anything|more|further))|feel\\s+free\\s+to\\s+(?:ask|reach\\s+out)|don'?t\\s+hesitate\\s+to\\s+(?:reach\\s+out|contact|ask)|(?:i(?:['’]m|\\s+am)|we(?:['’]re|\\s+are))\\s+(?:happy|glad|available)\\s+to\\s+help|(?:i|we)\\s+can\\s+help|we\\s+can\\s+(?:arrange|schedule|have|set\\s+up)\\s+(?:a\\s+)?(?:(?:quick|short)\\s+)?(?:call|session|meeting)|let\\s+me\\s+know\\s+(?:a\\s+)?(?:few\\s+)?times?\\s+that\\s+works?)(?![\\w])",
+      "hint": "An assistant-style service offer may add the author's availability or work. Check the person's own stated or confirmed decision before keeping it: an incoming request or your unconfirmed read-back is not approval. An authorized offer can stay.",
+      "example_bad": "Don't hesitate to reach out if you have any questions."
+    },
+    {
+      "id": "en-model-disclaimer",
+      "category": "model-trace",
+      "severity": "hard",
+      "regex": "(?<![\\w])(?:as\\s+an\\s+ai(?:\\s+language\\s+model|\\s+assistant)?|as\\s+a\\s+large\\s+language\\s+model|as\\s+of\\s+my\\s+(?:last|latest)\\s+(?:training|knowledge|update)|my\\s+(?:training|knowledge)\\s+(?:data\\s+)?cut-?off)(?![\\w])",
+      "hint": "Model talks about itself or its cutoff; remove.",
+      "example_bad": "As an AI language model, I cannot browse the web."
+    },
+    {
+      "id": "en-speculative-gap",
+      "category": "speculation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:while|although)\\s+(?:specific\\s+)?(?:details|information)\\s+(?:about\\s+[^.!?\\n]{1,40}?\\s+)?(?:are|is)\\s+(?:limited|scarce|not\\s+(?:widely|readily|publicly))|not\\s+widely\\s+(?:documented|disclosed)|based\\s+on\\s+(?:the\\s+)?available\\s+information|maintains\\s+a\\s+low\\s+profile)(?![\\w])",
+      "hint": "Admits missing data, then guesses; say what is unknown or cut.",
+      "example_bad": "While details are limited, she likely grew up in Ohio."
+    },
+    {
+      "id": "en-deep-saying",
+      "category": "deep-saying",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:the\\s+real\\s+question\\s+is|at\\s+its\\s+core|at\\s+the\\s+heart\\s+of\\s+(?:the\\s+matter|it|this)|what\\s+really\\s+matters\\s+is|the\\s+deeper\\s+issue|fundamentally,|in\\s+reality,)",
+      "hint": "Dresses an ordinary point as a hidden truth; state the point.",
+      "example_bad": "At its core, this is about trust."
+    },
+    {
+      "id": "en-aphorism",
+      "category": "deep-saying",
+      "severity": "soft",
+      "regex": "(?<![\\w])[a-z]+\\s+is\\s+the\\s+(?:new\\s+)?(?:currency|language|fuel|oil|architecture|dna)\\s+of(?![\\w])",
+      "hint": "Poster aphorism 'X is the currency of Y'; write the concrete claim.",
+      "example_bad": "Attention is the new currency of business."
+    },
+    {
+      "id": "en-faux-insight",
+      "category": "deep-saying",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:what\\s+(?:most\\s+people|nobody|no\\s+one)\\s+(?:gets?\\s+wrong|tells\\s+you|talks\\s+about|realizes)|the\\s+part\\s+(?:everyone|most\\s+people)\\s+(?:misses|skips)|this\\s+is\\s+the\\s+part\\s+(?:most|nobody))(?![\\w])",
+      "hint": "Casts the writer as the lone insider; make the claim stand on evidence.",
+      "example_bad": "Here's what most people get wrong about hiring."
+    },
+    {
+      "id": "en-arguing-no-one",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:to\\s+be\\s+clear,|don'?t\\s+get\\s+me\\s+wrong|this\\s+is\\s+not\\s+to\\s+say|i'?m\\s+not\\s+saying|one\\s+might\\s+be\\s+tempted\\s+to|a\\s+tempting\\s+approach\\s+would\\s+be)",
+      "hint": "Rebuts an objection nobody raised; drop it unless a reader would really object.",
+      "example_bad": "Don't get me wrong, docs matter."
+    },
+    {
+      "id": "en-meta-commentary",
+      "category": "meta-commentary",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:in\\s+this\\s+(?:article|post|guide|section),?\\s+(?:we'?ll|we\\s+will|i'?ll|i\\s+will)|let\\s+me\\s+walk\\s+you\\s+through|as\\s+we'?ll\\s+see|the\\s+rest\\s+of\\s+this\\s+(?:essay|post|article)|plot\\s+twist:|spoiler:)",
+      "hint": "Text narrates its own structure; talk about the subject.",
+      "example_bad": "In this article, we'll explore five tips."
+    },
+    {
+      "id": "en-rhetorical-setup",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:what\\s+if\\s+i\\s+told\\s+you|think\\s+about\\s+it[:.]|and\\s+that'?s\\s+okay\\.)",
+      "hint": "Rhetorical set-up; make the point.",
+      "example_bad": "What if I told you onboarding takes five minutes?"
+    },
+    {
+      "id": "en-colon-reveal",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?i:the\\s+(?:best|worst|real|key|secret|kicker|catch)(?:\\s+(?:part|thing|insight))?):\\s+[a-z]",
+      "hint": "Noun phrase, colon, dramatic reveal; write a plain sentence.",
+      "example_bad": "The best part: it learns from you.",
+      "case_sensitive": true
+    },
+    {
+      "id": "en-vague-declarative",
+      "category": "vague-claim",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:the\\s+(?:implications|stakes|consequences)\\s+are\\s+(?:significant|high|real|profound)|the\\s+reasons\\s+are\\s+(?:structural|complex))(?![\\w])",
+      "hint": "Says something is weighty without naming it; name it.",
+      "example_bad": "The implications are significant."
+    },
+    {
+      "id": "en-hedge-stack",
+      "category": "hedging",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:could|might|may)\\s+(?:potentially|possibly|arguably|perhaps)|it\\s+(?:could|might)\\s+be\\s+argued\\s+that)(?![\\w])",
+      "hint": "Two hedges on one claim; keep the one the evidence supports.",
+      "example_bad": "This could potentially affect results."
+    },
+    {
+      "id": "en-vague-association",
+      "category": "vague-claim",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:is|was|are|were)\\s+(?:closely\\s+)?(?:associated|linked|connected|tied)\\s+(?:with|to)(?![\\w])",
+      "hint": "Says two things are related without saying how; name the relation if the source gives it.",
+      "example_bad": "He was associated with the company's growth."
+    },
+    {
+      "id": "en-false-agency",
+      "category": "false-agency",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:the\\s+data\\s+(?:tells|shows)\\s+us|the\\s+market\\s+rewards|the\\s+(?:decision|solution|answer)\\s+emerg(?:es|ed)|(?:the\\s+)?numbers\\s+speak\\s+for\\s+themselves)(?![\\w])",
+      "hint": "Inanimate thing acting on its own; name who decided or did it.",
+      "example_bad": "The decision emerged after the review."
+    },
+    {
+      "id": "en-additionally-opener",
+      "category": "ai-vocabulary",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Additionally|Furthermore|Moreover|Consequently|Notably),",
+      "hint": "Formal connector opening a sentence; most of the time 'also' or nothing works.",
+      "example_bad": "Moreover, the plan is cheap.",
+      "case_sensitive": true
+    },
+    {
+      "id": "en-title-case-heading",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "^#{1,6}\\s+[A-Z][a-z]+(?:\\s+(?:[A-Z][a-z]+|And|Or|Of|The|For|To|In|With)){3,}\\s*$",
+      "hint": "Heading in Title Case; use sentence case.",
+      "example_bad": "## Strategic Planning And Global Growth",
+      "case_sensitive": true
+    },
+    {
+      "id": "en-hyphen-after-noun",
+      "category": "punctuation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:is|are|was|were)\\s+(?:high|well|long|real|low|short)-(?:quality|known|documented|term|time|level)(?=[.,;!?\\s])",
+      "hint": "Compound adjective after the noun keeps its hyphen; drop it there.",
+      "example_bad": "The plan is long-term."
+    },
+    {
+      "id": "en-invented-stat",
+      "category": "unsourced-number",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:\\d+[kKmM]\\+\\s+(?:happy\\s+)?(?:developers|users|teams|customers|downloads|companies)|99\\.9+%\\s+uptime)(?![\\w])",
+      "hint": "Round social-proof number with no source; use a measured, sourced figure or cut.",
+      "example_bad": "Trusted by 10k+ teams with 99.99% uptime."
+    },
+    {
+      "id": "en-every-single",
+      "category": "emphasis",
+      "severity": "soft",
+      "regex": "(?<![\\w])every\\.\\s+single\\.\\s+[a-z]+\\.",
+      "hint": "Word-by-word periods for emphasis; write the sentence normally.",
+      "example_bad": "Every. Single. Day."
+    },
+    {
+      "id": "en-the-fact-that",
+      "category": "parasite",
+      "severity": "soft",
+      "regex": "(?<![\\w])the\\s+fact\\s+that(?![\\w])",
+      "hint": "Empty frame; write the clause itself.",
+      "example_bad": "We are worried by the fact that delivery is late."
+    },
+    {
+      "id": "en-in-order-to",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])in\\s+order\\s+(?:to|for)(?![\\w])",
+      "hint": "'To' does the same job.",
+      "example_bad": "We met in order to agree the budget."
+    },
+    {
+      "id": "en-light-verb",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:make|makes|made|making|give|gives|gave|giving|conduct\\w*|perform\\w*|undertak\\w*|carr(?:y|ies|ied|ying)\\s+out)\\s+(?:an?\\s+|the\\s+)?(?:[a-z]+\\s+)?[a-z]+(?:tion|sion|ment|ance|ence)s?(?![\\w])",
+      "hint": "Empty verb carrying an action noun; use the verb inside the noun: decide, investigate, pay.",
+      "example_bad": "The team will conduct an investigation and make a decision."
+    },
+    {
+      "id": "en-there-is-opener",
+      "category": "structure",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))There\\s+(?:is|are|was|were)(?![\\w])",
+      "hint": "Empty subject; start with the real actor or thing.",
+      "example_bad": "There are three reasons we missed the date."
+    },
+    {
+      "id": "en-passive-by",
+      "category": "passive",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:is|are|was|were|been|being|be)\\s+(?:[a-z]+ly\\s+)?[a-z]+(?:ed|en)\\s+by(?![\\w])",
+      "hint": "Passive with the actor in a by-phrase; make the actor the subject unless the object is the topic.",
+      "example_bad": "The report was prepared by our team."
+    },
+    {
+      "id": "en-officialese",
+      "category": "bureaucratese",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:prior\\s+to|in\\s+the\\s+event\\s+(?:that|of)|at\\s+this\\s+point\\s+in\\s+time|in\\s+regard\\s+to|with\\s+respect\\s+to|pursuant\\s+to|in\\s+accordance\\s+with|herewith|please\\s+be\\s+advised|please\\s+find\\s+attached|kindly\\s+be\\s+informed|we\\s+wish\\s+to\\s+inform\\s+you|at\\s+your\\s+earliest\\s+convenience)(?![\\w])",
+      "hint": "Official phrase with a plain equivalent: before, if, now, about, under, attached, by <date>.",
+      "example_bad": "Please be advised that prior to the meeting you should sign the form."
+    },
+    {
+      "id": "en-pleonasm",
+      "category": "pleonasm",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:past\\s+history|end\\s+result|free\\s+gift|added\\s+bonus|advance\\s+planning|close\\s+proximity|final\\s+outcome|unexpected\\s+surprise|each\\s+and\\s+every|revert\\s+back|true\\s+fact|basic\\s+fundamentals|new\\s+innovation|join\\s+together)(?![\\w])",
+      "hint": "Two words carrying one meaning; keep one.",
+      "example_bad": "Here is a short note on the past history of the project."
+    },
+    {
+      "id": "en-stock-apology",
+      "category": "stock-phrase",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:we|i)\\s+apologi[sz]e\\s+for\\s+any\\s+(?:inconvenience|confusion)|sorry\\s+for\\s+any\\s+inconvenience|(?:we'?re|we\\s+are|i'?m|i\\s+am)\\s+sorry\\s+(?:that\\s+)?you\\s+feel|sorry\\s+if\\s+(?:you|anyone)\\s+(?:were|was|felt)|if\\s+anyone\\s+was\\s+offended|your\\s+(?:call|feedback|business|opinion)\\s+is\\s+(?:very\\s+)?important\\s+to\\s+us)(?![\\w])",
+      "hint": "Formula apology; name what went wrong, own it and say what happens next.",
+      "example_bad": "We apologize for any inconvenience caused."
+    },
+    {
+      "id": "en-reply-pressure",
+      "category": "pressure",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:looking\\s+forward\\s+to\\s+(?:your\\s+)?(?:prompt|positive|favou?rable|speedy)\\s+(?:reply|response)|awaiting\\s+your\\s+(?:prompt\\s+)?(?:reply|response))(?![\\w])",
+      "hint": "Pressure for a reply; give a reason and a date, or make answering easy.",
+      "example_bad": "Looking forward to your prompt reply."
+    },
+    {
+      "id": "en-nudge",
+      "category": "pressure",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:just\\s+(?:following|circling)\\s+up|just\\s+checking\\s+in|gentle\\s+reminder|friendly\\s+reminder|(?:as\\s+)?per\\s+my\\s+(?:last|previous)\\s+(?:email|message)|touching\\s+base|any\\s+updates?\\s+on\\s+this\\?)",
+      "hint": "Nudge without content; restate the task, the date and why it matters.",
+      "example_bad": "Just following up on my last email."
+    },
+    {
+      "id": "en-email-opener",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?<![\\w])i\\s+hope\\s+(?:this|my)\\s+(?:email|message|note|letter)\\s+finds\\s+you\\s+well(?![\\w])",
+      "hint": "Stock opener; start with the point of the letter.",
+      "example_bad": "I hope this email finds you well."
+    },
+    {
+      "id": "en-obvious",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:everyone\\s+knows|as\\s+everyone\\s+knows|it'?s\\s+no\\s+secret|it\\s+is\\s+no\\s+secret|as\\s+we\\s+all\\s+know|it\\s+goes\\s+without\\s+saying|needless\\s+to\\s+say)(?![\\w])",
+      "hint": "Claim of obviousness: if it is known, cut it; if not, give the evidence.",
+      "example_bad": "It's no secret that remote work cuts output."
+    },
+    {
+      "id": "en-self-correction",
+      "category": "self-correction",
+      "severity": "soft",
+      "regex": ",\\s+(?:or\\s+rather|i\\s+mean),",
+      "hint": "Speech repair left in writing; keep only the corrected word.",
+      "example_bad": "We sent the report, or rather, its first part."
+    },
+    {
+      "id": "en-approx-number",
+      "category": "vague-number",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:more\\s+than|upwards\\s+of|approximately|in\\s+excess\\s+of)\\s+\\$?\\d",
+      "hint": "Hedge on a figure; give the figure, or the exact figure with an 'as of' date.",
+      "example_bad": "We have served more than 200 clients."
+    },
+    {
+      "id": "en-firstly",
+      "category": "structure",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:firstly|secondly|thirdly|fourthly)(?![\\w])",
+      "hint": "Verbal numbering; in writing a new paragraph or a numbered list does this job (fine in a talk).",
+      "example_bad": "Firstly, it is cheap."
+    },
+    {
+      "id": "en-by-the-way",
+      "category": "aside",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:by\\s+the\\s+way|incidentally)(?![\\w])",
+      "hint": "Aside marker: a relevant point needs no flag, an irrelevant one should go.",
+      "example_bad": "By the way, humidifiers are on sale."
+    },
+    {
+      "id": "en-mind-reading",
+      "category": "presumption",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:you'?ll\\s+love|you\\s+will\\s+love|you'?re\\s+going\\s+to\\s+love|you'?ll\\s+appreciate|you\\s+will\\s+appreciate|i'?m\\s+sure\\s+you(?:'ll|\\s+will|'re|\\s+are))(?![\\w])",
+      "hint": "Writer decides for the reader; give the fact and let the reader judge.",
+      "example_bad": "I'm sure you'll love our new range."
+    },
+    {
+      "id": "en-corporate-cliche",
+      "category": "cliche",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:team\\s+of\\s+(?:professionals|experts)|one-stop\\s+shop|turnkey\\s+solutions?|tailored\\s+solutions?|industry[- ]leading|state[- ]of[- ]the[- ]art|second\\s+to\\s+none|customer[- ]centric|wide\\s+range\\s+of\\s+(?:services|products|solutions)|highest\\s+quality|years\\s+on\\s+the\\s+market)(?![\\w])",
+      "hint": "Corporate or ad cliché; replace it with what actually happens: the step, the number, the client.",
+      "example_bad": "We are a team of professionals offering tailored solutions."
+    },
+    {
+      "id": "en-hiring-cliche",
+      "category": "cliche",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:team\\s+player|self-starter|hard[- ]working|detail[- ]oriented|go-getter|results[- ]driven|rock\\s?star|wear\\s+many\\s+hats)(?![\\w])",
+      "hint": "Trait label that tells the candidate nothing; describe the situation that needs the trait.",
+      "example_bad": "We want a detail-oriented team player."
+    },
+    {
+      "id": "en-headline-bait",
+      "category": "headline",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:you\\s+won'?t\\s+believe|jaw[- ]dropping|mind[- ]blowing|will\\s+blow\\s+your\\s+mind)(?![\\w])",
+      "hint": "Bait instead of content; say what the reader gets.",
+      "example_bad": "You won't believe these jaw-dropping prices"
+    },
+    {
+      "id": "en-condescension",
+      "category": "tone",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:even\\s+a\\s+child\\s+(?:can|could|would)|any\\s+(?:educated|self-respecting|competent)\\s+(?:person|professional|reader)|every\\s+self-respecting|you'?re\\s+just\\s+lazy)(?![\\w])",
+      "hint": "Talks down to the reader; explain plainly and let them judge the difficulty.",
+      "example_bad": "Even a child can set this up."
+    },
+    {
+      "id": "en-stock-idiom",
+      "category": "cliche",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:hamster\\s+wheel|tip\\s+of\\s+the\\s+iceberg|butterfly\\s+effect|like\\s+a\\s+fish\\s+(?:to|in)\\s+water)(?![\\w])",
+      "hint": "Worn idiom used as an image; describe the actual scene.",
+      "example_bad": "Late couriers are only the tip of the iceberg."
+    },
+    {
+      "id": "en-accusing-headline",
+      "category": "headline",
+      "severity": "soft",
+      "regex": "(?<![\\w])mistakes\\s+(?:that\\s+)?you(?:'re|\\s+are)?\\s+(?:making|make)(?![\\w])",
+      "hint": "Headline that accuses the reader; promise the fix instead.",
+      "example_bad": "5 mistakes you make when ordering furniture"
+    },
+    {
+      "id": "en-stock-ending",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:the\\s+choice\\s+is\\s+yours|you'?ve\\s+got\\s+this|the\\s+key\\s+is\\s+to\\s+(?:just\\s+)?start)(?![\\w])",
+      "hint": "Stock moral at the end; finish on the last useful point or the next step.",
+      "example_bad": "Just start, and remember: you've got this!"
+    },
+    {
+      "id": "en-urgency",
+      "category": "pressure",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:as\\s+soon\\s+as\\s+possible|asap|in\\s+the\\s+shortest\\s+possible\\s+time)(?![\\w])",
+      "hint": "Urgency without a date; give the date and the reason.",
+      "example_bad": "Please send the invoice as soon as possible."
+    },
+    {
+      "id": "en-scarcity",
+      "category": "sales-language",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:limited\\s+time\\s+only|while\\s+supplies\\s+last|don'?t\\s+miss\\s+(?:out|this)|act\\s+now|once[- ]in[- ]a[- ]lifetime)(?![\\w])",
+      "hint": "Pressure formula; give the concrete offer, its price and its real deadline.",
+      "example_bad": "Act now, while supplies last!"
+    },
+    {
+      "id": "en-intensifier",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:very|really|truly|extremely|absolutely|incredibly|utterly|totally)(?![\\w])",
+      "hint": "Intensifier; delete it and see if the sentence lost anything. Keep it if it did.",
+      "example_bad": "This is a really very important step."
+    },
+    {
+      "id": "en-chatbot-offer",
+      "category": "chatbot-residue",
+      "severity": "hard",
+      "regex": "(?:(?:^|(?<=[.!?…]\\s))(?:Do\\s+you\\s+)?want\\s+me\\s+to|(?<![\\w])should\\s+i\\s+(?:continue|go\\s+on|expand|add)|i\\s+can\\s+also\\s+(?:write|draft|make|create|prepare)|if\\s+you(?:'d|\\s+would)\\s+like,?\\s+i\\s+can)(?![\\w])",
+      "hint": "The assistant's offer to do more stayed in the text; delete it.",
+      "example_bad": "Want me to add a section on pricing?"
+    },
+    {
+      "id": "en-reasoning-leak",
+      "category": "draft-leftover",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:let\\s+me\\s+think(?:\\s+(?:about\\s+this|step\\s+by\\s+step|this\\s+through))?|let'?s\\s+think\\s+(?:this\\s+through\\s+)?step\\s+by\\s+step|first,\\s+i'?ll\\s+(?:analy[sz]e|break|look|consider))(?![\\w])",
+      "hint": "Reasoning scaffold leaked into the text; keep only the conclusion.",
+      "example_bad": "Let me think about this step by step."
+    },
+    {
+      "id": "en-restatement",
+      "category": "filler",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:In\\s+other\\s+words|Put\\s+simply|Simply\\s+put|Essentially|That\\s+is\\s+to\\s+say|To\\s+put\\s+it\\s+another\\s+way),",
+      "hint": "The sentence restates the previous one; keep the clearer of the two.",
+      "example_bad": "In other words, the team shipped late."
+    },
+    {
+      "id": "en-whether-closer",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))Whether\\s+you(?:'re|\\s+are)\\s+(?:a|an|new\\s+to|just)\\s+[^.!?\\n]{1,60}?\\s+or\\s+",
+      "hint": "'Whether you're X or Y' recap that addresses everyone; end on the point for this reader.",
+      "example_bad": "Whether you're a founder or a freelancer, this tool fits."
+    },
+    {
+      "id": "en-question-heading",
+      "category": "formatting",
+      "severity": "soft",
+      "regex": "^#{1,6}\\s+(?:What|Why|How|When|Which|Who)(?![\\w])[^\\n]*\\?\\s*$",
+      "hint": "Question heading in an article; a statement heading tells the reader what the section holds. Fine in a FAQ.",
+      "example_bad": "## Why is caching important?"
+    },
+    {
+      "id": "en-hedged-enumeration",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:there\\s+are\\s+(?:several|many|a\\s+few|a\\s+number\\s+of|various)\\s+(?:ways|things|factors|reasons|steps|considerations)|generally\\s+speaking|it\\s+is\\s+generally\\s+(?:a\\s+good\\s+idea|recommended))(?![\\w])",
+      "hint": "Announces a vague list instead of giving the answer; give the answer first.",
+      "example_bad": "Generally speaking, smaller PRs merge faster."
+    },
+    {
+      "id": "en-teaser",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:The\\s+(?:catch|kicker|twist|result|answer|problem|secret|truth|brutal\\s+truth)\\?|Sound\\s+familiar\\?|(?:Hint|Spoiler|Pro\\s+tip):)",
+      "hint": "Teaser before the point; state the point.",
+      "example_bad": "The catch? It only works on Linux."
+    },
+    {
+      "id": "en-truth-is",
+      "category": "staged-opener",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:It\\s+turns\\s+out|The\\s+truth\\s+is|Can\\s+we\\s+talk\\s+about)",
+      "hint": "Staged reveal before an ordinary claim; make the claim.",
+      "example_bad": "The truth is, nobody reads the docs."
+    },
+    {
+      "id": "en-interpretive-aside",
+      "category": "meta-commentary",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:that\\s+(?:distinction|detail|part|last\\s+part|point)\\s+matters(?:\\s+more\\s+than\\s+(?:it\\s+sounds|you\\s+think))?(?=\\s*[.!:—–]|\\s*$)|the\\s+key\\s+(?:point|takeaway|insight)\\s+(?:is|here)|this\\s+is\\s+what\\s+[^.!?\\n]{1,30}\\s+(?:actually|really)\\s+looks\\s+like)(?![\\w])",
+      "hint": "Tells the reader how to weigh the point instead of showing it; cut it or give the fact that shows it.",
+      "example_bad": "That distinction matters."
+    },
+    {
+      "id": "en-meets-formula",
+      "category": "deep-saying",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:is|are)\\s+a\\s+feature,\\s+not\\s+a\\s+bug|is\\s+where\\s+[a-z]+\\s+meets\\s+[a-z]+)(?![\\w])",
+      "hint": "Slogan formula standing in for a claim; write the concrete claim.",
+      "example_bad": "Design is where art meets engineering."
+    },
+    {
+      "id": "en-narrator-distance",
+      "category": "tone",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Nobody\\s+designed\\s+this|People\\s+tend\\s+to|One\\s+might\\s+(?:say|argue|think))",
+      "hint": "Lecturer's distance from the scene; name who does what, or address the reader.",
+      "example_bad": "People tend to skip the manual."
+    },
+    {
+      "id": "en-document-narration",
+      "category": "meta-commentary",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:was\\s+(?:added|introduced)\\s+to\\s+replace|has\\s+been\\s+updated\\s+to|flagged\\s+rather\\s+than\\s+guessed|the\\s+(?:table|list|chart)\\s+below\\s+(?:compares|shows|summari[sz]es))(?![\\w])",
+      "hint": "The text narrates its own history or layout; describe the subject as it is. Fine in changelogs and migration guides.",
+      "example_bad": "This function was added to replace the old loop."
+    },
+    {
+      "id": "en-outlook",
+      "category": "inflation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:poised\\s+for\\s+(?:growth|success)|the\\s+road\\s+ahead|looking\\s+ahead,|the\\s+sky'?s\\s+the\\s+limit)(?![\\w])",
+      "hint": "Stock outlook; end on the last concrete fact or the stated plan.",
+      "example_bad": "The company is poised for growth."
+    },
+    {
+      "id": "en-profile-filler",
+      "category": "speculation",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:(?:information|details)\\s+(?:about|on)\\s+(?:her|his|their)\\s+[^.!?\\n]{0,30}?(?:is|are)\\s+not\\s+publicly\\s+available|keeps?\\s+(?:her|his|their)\\s+personal\\s+(?:life|details)\\s+private|active\\s+social\\s+media\\s+presence)(?![\\w])",
+      "hint": "Filler about missing information or online presence; state what the source shows, or cut the sentence.",
+      "example_bad": "He has an active social media presence."
+    },
+    {
+      "id": "en-hedge-debris",
+      "category": "hedging",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:to\\s+(?:some|a\\s+certain)\\s+(?:extent|degree)|in\\s+some\\s+ways|arguably)(?![\\w])",
+      "hint": "Leftover hedge beside a confident claim; keep it only where the source shows real doubt.",
+      "example_bad": "To some extent, the plan worked."
+    },
+    {
+      "id": "en-sentence-adverb",
+      "category": "emphasis",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:Interestingly|Importantly|Crucially|Fundamentally|Undeniably|Remarkably|Tellingly),",
+      "hint": "Sentence adverb that grades the point; delete it and see whether anything is lost.",
+      "example_bad": "Interestingly, the tests passed."
+    },
+    {
+      "id": "en-split-contrast",
+      "category": "contrast-formula",
+      "severity": "soft",
+      "regex": "(?:^|(?<=[.!?…]\\s))(?:(?:This|That|It)\\s+(?:does\\s+not|doesn'?t)\\s+mean\\s+[^.!?\\n]{1,80}\\.\\s+It\\s+means|[^.!?\\n]{0,40}(?:feels|looks|seems)\\s+like\\s+[^.!?\\n]{1,40}\\.\\s+It'?s\\s+actually)(?![\\w])",
+      "hint": "Contrast split over two sentences; state the second half directly.",
+      "example_bad": "It feels like magic. It's actually caching."
+    },
+    {
+      "id": "en-honesty-label",
+      "category": "tone",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:no\\s+fluff|no\\s+hype|an?\\s+honest\\s+(?:list|breakdown|take)|this\\s+isn'?t\\s+(?:another|yet\\s+another)|without\\s+the\\s+(?:fluff|hype|jargon))(?![\\w])",
+      "hint": "The text labels itself honest or different instead of showing it; delete the label.",
+      "example_bad": "Here's an honest breakdown, no fluff."
+    },
+    {
+      "id": "en-pseudo-therapy",
+      "category": "tone",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:you'?re\\s+not\\s+alone[.!]|it'?s\\s+okay\\s+to\\s+(?:feel|not)|give\\s+yourself\\s+permission|your\\s+feelings\\s+are\\s+valid)(?![\\w])",
+      "hint": "Self-help reassurance in a text that is not about feelings; write the advice or the fact plainly.",
+      "example_bad": "Missed the deadline? You're not alone."
+    },
+    {
+      "id": "en-story-moral",
+      "category": "bookend",
+      "severity": "soft",
+      "regex": "(?<![\\w])(?:the\\s+moral\\s+of\\s+(?:the|this)\\s+story|this\\s+story\\s+(?:teaches|taught)\\s+us|the\\s+lesson\\s+here\\s+is)(?![\\w])",
+      "hint": "The narrator spells out the lesson; end on the event or detail before it.",
+      "example_bad": "The moral of the story is simple."
+    },
+    {
+      "id": "en-tail-negations",
+      "category": "rhetorical",
+      "severity": "soft",
+      "regex": ",\\s*no\\s+[a-z]+(?:\\s+[a-z]+)?,\\s*no\\s+[a-z]+(?:\\s+[a-z]+)?,\\s*(?:and\\s+)?no\\s+[a-z]+",
+      "hint": "A run of three or more 'no X' tails; keep the one that states a real condition and do not replace the rest with new tails.",
+      "example_bad": "A full report, no guesswork, no surprises, no fees."
+    }
+  ]
+}

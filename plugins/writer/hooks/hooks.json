@@ -1,0 +1,10 @@
+{
+  "description": "Writer: analyze private draft revisions and return findings to the same agent before delivery.",
+  "hooks": {
+    "SessionStart": [{"matcher": "startup|resume|clear|compact", "hooks": [{"type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/hook.py\"", "timeout": 30}]}],
+    "UserPromptSubmit": [{"hooks": [{"type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/hook.py\"", "timeout": 30}]}],
+    "PostToolUse": [{"hooks": [{"type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/hook.py\"", "timeout": 30}]}],
+    "Stop": [{"hooks": [{"type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/hook.py\"", "timeout": 30}]}],
+    "SessionEnd": [{"hooks": [{"type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/hook.py\"", "timeout": 3}]}]
+  }
+}
