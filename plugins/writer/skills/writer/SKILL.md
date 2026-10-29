@@ -61,9 +61,11 @@ Revise with `draft.py put --id <id> --text -`; the source and named limits are r
 
 ## Profile
 
+On the first Writer request in each chat, check for a profile using the method above. If none is available, offer once, in one short line, to set it up now or later. Add the offer to the current task's usual response and continue that task on its usual path. For a greeting alone, include it in the introduction.
+
 When the person corrects a read-back, ask "Remember this?" once per rule, only when the correction is about the person or their company (signature, form of address, banned words, editorial policy), never about this text's content. Name the rule's boundary in the question: "In emails to clients, address them by first name. Remember?", not "Address people by first name". The question is one of the lines under the text. On yes: `style.py remember --rule "<rule>" --when "<boundary>" --origin "<this text, e.g. reply to Marta>"`.
 
-Set up a profile only when the person asks ("set it up for me"): who they are and what they write; 3–5 of their own texts for the voice; the company's editorial policy, if they have one, which you study and then propose what to add. When a profile exists, start from it and merge. Show the whole draft and write it with `style.py write --from -` after their yes.
+Set up a profile only when the person asks ("set it up for me") or accepts the invitation: who they are and what they write; 3–5 of their own texts for the voice; the company's editorial policy, if they have one, which you study and then propose what to add. When a profile exists, start from it and merge. Show the whole draft and write it with `style.py write --from -` after their yes.
 
 An editorial policy sent along with a task ("take it into account"): apply it to this text, then offer to save it to the profile; write after their yes.
 

@@ -1,71 +1,86 @@
 # Writer
 
-[Русская версия](README.ru.md)
+![Writer](assets/cover.png)
 
-Writer helps you write any work text simply, clearly and with care for the reader. The text does its job: the reader understands it on the first read and does what you need, and you don't have to redo it or worry that something was lost or something extra slipped in.
+[Русский](README.ru.md)
 
-It works in Claude Code, Cowork, Codex and claude.ai, in any language.
+Writer helps you put what you mean into words for your reader, whether you’re writing a client email, a post, a brief for a contractor, or a speech. Bring notes, a rough draft, an incoming message, or a description of what you need.
 
-In Codex, we recommend GPT-6.1 Terra. GPT-6.1 Sol also passed the targeted reply checks. GPT-6 Luna added unapproved offers of work or calls in three tested reply scenarios, including after clarification. For replies involving commitments, use Terra or Sol.
+Before writing something new, Writer checks the meaning with you: who it is for, what the reader should understand or do, and what you are willing to promise. An agreed writing profile carries your voice and preferences into future texts. That might mean opening emails with the request, addressing clients by first name, or leaving out promotional adjectives.
+
+It works in Claude Code, Codex, claude.ai, and Cowork.
 
 ## Install
 
-**Claude Code.** In the terminal, one command at a time:
+In Claude Code and Codex, you need plugin support and Python 3 for the built-in checks. No additional Python libraries are required.
 
-```bash
-claude plugin marketplace add sglibiciuc/skills
-claude plugin install writer@sglibiciuc
+In Claude Code, run:
+
+```text
+/plugin marketplace add sglibiciuc/skills
+/plugin install writer@sglibiciuc
 ```
 
-**Codex:**
+For Codex, run these commands in your terminal:
 
-```bash
+```sh
 codex plugin marketplace add sglibiciuc/skills
 codex plugin add writer@sglibiciuc
 ```
 
-Then start a new session. Updates reach everyone through the catalog.
+In claude.ai and Cowork, you can install Writer as a skill. Download the [repository](https://github.com/sglibiciuc/skills) and ZIP the entire `plugins/writer/skills/writer` folder. Open Customize, select Skills, click “+,” then choose Create skill and Upload a skill. Upload the archive and enable the skill. In claude.ai, Code execution and file creation must also be enabled.
 
-In Codex, review and trust Writer's hooks when prompted, or through `/hooks`. The hooks analyze private drafts and return findings to the writing agent before it delivers the text. Your own hooks and settings are kept as they are. Without active hooks, Writer uses the same bundled analysis during draft preparation.
+Start a new chat after installation. Use `/writer:writer` in Claude Code, include `$writer` in your Codex request, or say “Use Writer” in Claude. Then describe the task in ordinary words.
 
-**claude.ai.** Zip the `skills/writer` folder and upload it in Settings → Capabilities → Skills ("Upload skill"). Code execution must be on.
+## Your first text
 
-## How to use
+Until you have a profile, Writer offers once in each new chat to set it up now or later. It adds a short line to its usual reply and continues your task. If you only say hello, the offer is part of the introduction.
 
-Ask the way you would ask a colleague:
+You could start with:
 
-- "Reply to Marta at the supplier: we accept the new prices, the contract term is still open"
-- "Write a post for tourists from this memo"
-- "Make this letter shorter, the client won't read it"
-- "Cut it to 600 characters"
-- "This sounds like a robot, make it human"
-- "Give me five subject lines"
-- "What's wrong with this letter?" (you get a review, the text stays as it is)
+> Reply to the supplier. I accept the new price from 1 December. I am not agreeing to an annual contract yet. Here is their email…
 
-If you ask to edit a text without saying what's wrong, Writer asks what bothers you first.
+This gives Writer the reader, your decision, and the boundary of your commitment. It will briefly restate the task and write the reply straight away. If you only say “Reply to the supplier” and attach their proposal, Writer will first ask what you want to accept, decline, or propose instead.
 
-You can paste text or attach a file: a document, a PDF, a Google Doc. Your file stays as it is. A plain-text file (md, txt) gets a new version saved next to it; for a Word document, a PDF or a Google Doc you get the result in that format through your assistant's own tools.
+For other new texts with an incomplete brief, it proposes its understanding before drafting. You can confirm or correct it. After your reply, Writer continues the same task. This gives you a chance to catch a misunderstanding before it becomes a persuasive draft.
 
-## "Here's how I understood it"
+For an edit, name the problem: “cut this to 300 characters,” “too formal,” or “remove the AI tells.” Writer can then make the change straight away. Ask “assess this without rewriting it” to get comments while keeping the text untouched.
 
-Before a new text, Writer tells you in a few lines who will read it, what the text will say, what it will promise on your behalf, and what it assumes, for example: "The dates were her example, I won't confirm them. Right?" Answer "yes" or correct it. This takes a few seconds and saves a rewrite: a model on its own tends to fill gaps with guesses, such as dates and money you never agreed to.
+## Tasks to bring
 
-When replying to someone else's request, if you have not said what you want to accept, decline or propose, Writer asks for your decision directly before drafting the reply.
+| Task | Example request |
+| --- | --- |
+| Write from scratch | “Turn these notes into a brief for the contractor” |
+| Reply to a message | “Decline the discount politely. Do not offer new terms” |
+| Reach a different audience | “Turn this internal memo into a post for customers” |
+| Shorten | “Keep this announcement within 500 characters, preserving the dates and address” |
+| Explore wording | “Suggest five subject lines for the end-of-sale email” |
+| Review | “Show me where the reader cannot tell what I need them to do” |
 
-If your request already says who the text is for, what to say, and what not to promise or what to keep quiet about, Writer writes at once and puts that one line above the text.
+Writer also handles press releases, speeches, slide text, slogans, and names. You can ask for several texts about the same occasion. Paste the source material into the chat or attach a file. Word, PDF, and Google Docs support depends on the tools available in your environment.
 
-## Your profile
+## Make it sound like you
 
-Say "set it up for me": Writer asks who you are and what you write, takes 3–5 of your texts for your voice, and reads your company's editorial policy if you have one. It saves the profile after your "yes".
+A profile helps when “clear and correct” still does not mean “I like it.” It can hold how you address people, the expressions you use, and your company’s rules, so you do not have to repeat them in every brief.
 
-When you correct something about yourself or your company (signature, how you address people, words you never use), Writer asks once "Remember this?" and shows where the rule applies, for example "in emails to clients". Nothing is saved without your "yes".
+You can accept the invitation or ask for setup yourself:
 
-The profile is kept outside the plugin, so updates don't touch it: in `~/.writer` in Claude Code, in `.writer/` in your working folder in Cowork and Codex. In claude.ai Writer gives you a ready block to paste into your project instructions.
+> Set up Writer for me. I lead a small team, write to clients, and run a professional newsletter. I want to keep my own voice.
 
-## If another skill answers instead
+Writer asks who you are and what you write, requests 3–5 of your own texts, and studies your company’s editorial policy if you have one. Your samples help describe your voice. The editorial policy sets company requirements for forms of address, terminology, formatting, and tone. Writer then shows you the whole proposed profile and saves it after you agree. If a profile already exists, it incorporates the new decisions into it.
 
-Other writing skills you have installed may catch the request first. Switch them off, or call Writer directly: `/writer:writer` in Claude Code, `$writer` in Codex.
+You can refine preferences while working, too. When you correct a rule about yourself or your company, Writer offers to remember it within a specific boundary: “In client emails, use first names. Remember this?” A detail in one email, such as a new meeting date, should stay specific to that email. An editorial policy supplied with a task is applied to that text, with an offer to save it for future use.
 
-## License
+Before writing, editing, or reviewing, Writer reads the available profile. In an environment with persistent files, you can keep a global profile and separate project rules. They live outside the plugin and survive its updates. In claude.ai, Writer gives you the agreed profile or new rule to paste into the project instructions, because files in its working environment do not persist between chats.
 
-MIT, see [LICENSE](LICENSE). Collected from books by various authors, retold in our own words. The repositories behind the AI-tell patterns are credited in [NOTICE](NOTICE).
+## Before you get the result
+
+Writer checks the complete draft for stock phrases, bureaucratic wording, chatbot residue, and any length limit you set. A flagged phrase needs a decision in context: an appropriate quotation or a necessary expression can stay. The check serves the text, so clearing every match is not the goal.
+
+These checks cover wording and length. They do not automatically verify facts against external sources. Writer is instructed to preserve the facts and agreements you supply. Decisions about new commitments remain yours.
+
+You can receive the result in the chat or as a file. When editing a file, Writer keeps the original and saves a separate revision.
+
+You can write in any language. Dedicated language checks cover Russian and English, with common checks used for other languages. Translation, programming, legal review, and prompts for agents are outside Writer’s scope.
+
+Licensed under [MIT](LICENSE). See [NOTICE](NOTICE) for the sources of ideas and acknowledgements.
