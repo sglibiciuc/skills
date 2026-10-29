@@ -110,7 +110,8 @@ class ScanTest(unittest.TestCase):
         for i in ("ru-ne-prosto-a", "ru-sovremennyi-mir", "ru-vazhno-otmetit", "ru-weasel",
                   "ru-klyuchevaya-rol", "ru-podvodya-itog", "ru-chatbot-closing"):
             self.assertIn(i, ids)
-        self.assertGreaterEqual(r["summary"]["hard"], 2)
+        # A contrast can be intentional; only the explicit chat residue here is hard.
+        self.assertEqual(next(f for f in r["findings"] if f["id"] == "ru-chatbot-closing")["severity"], "hard")
 
     def test_en_slop_and_positions(self):
         r = slop_scan.scan(read_fixture("en_slop.md"))

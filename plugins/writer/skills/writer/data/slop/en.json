@@ -590,7 +590,7 @@
       "category": "vague-number",
       "severity": "soft",
       "regex": "(?<![\\w])(?:more\\s+than|upwards\\s+of|approximately|in\\s+excess\\s+of)\\s+\\$?\\d",
-      "hint": "Hedge on a figure; give the figure, or the exact figure with an 'as of' date.",
+      "hint": "Check whether this approximation matches the source. Keep necessary uncertainty; use an exact number only when supplied.",
       "example_bad": "We have served more than 200 clients."
     },
     {
@@ -700,9 +700,9 @@
     {
       "id": "en-chatbot-offer",
       "category": "chatbot-residue",
-      "severity": "hard",
+      "severity": "soft",
       "regex": "(?:(?:^|(?<=[.!?…]\\s))(?:Do\\s+you\\s+)?want\\s+me\\s+to|(?<![\\w])should\\s+i\\s+(?:continue|go\\s+on|expand|add)|i\\s+can\\s+also\\s+(?:write|draft|make|create|prepare)|if\\s+you(?:'d|\\s+would)\\s+like,?\\s+i\\s+can)(?![\\w])",
-      "hint": "The assistant's offer to do more stayed in the text; delete it.",
+      "hint": "Check whether the offer belongs to the author and was authorized. An authorized offer can stay; distinguish it from leftover assistant chatter.",
       "example_bad": "Want me to add a section on pricing?"
     },
     {

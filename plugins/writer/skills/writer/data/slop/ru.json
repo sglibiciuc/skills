@@ -13,9 +13,9 @@
     {
       "id": "ru-eto-ne-prosto",
       "category": "contrast-formula",
-      "severity": "hard",
+      "severity": "soft",
       "regex": "(?<![\\w])это\\s+не\\s+просто\\s+[^.!?\\n]{1,60}?[.!]\\s+это(?![\\w])",
-      "hint": "The 'not just X' contrast split over two sentences; keep only the second claim.",
+      "hint": "Check whether this contrast adds a meaningful distinction or is a stock flourish. Preserve deliberate quotes and supported contrasts.",
       "example_bad": "Это не просто приложение. Это образ жизни."
     },
     {
@@ -256,7 +256,7 @@
       "id": "ru-chatbot-closing",
       "category": "chatbot-residue",
       "severity": "hard",
-      "regex": "(?<![\\w])(?:наде(?:юсь|емся),?\\s+(?:это|эта\\s+информация|данная\\s+информация|мой\\s+ответ)\\s+(?:поможет|помогла|окажется\\s+полезн\\w+|была\\s+полезн\\w+)|вот\\s+(?:краткий|подробный|обновл[её]нный|переработанный)\\s+(?:обзор|вариант|текст|ответ)\\s*:)",
+      "regex": "(?<![\\w])(?:наде(?:юсь|емся),?\\s+(?:это|эта\\s+информация|данная\\s+информация|мой\\s+ответ)\\s+(?:поможет|помогла|окажется\\s+полезн\\w+|был[ао]\\s+полезн\\w+)|вот\\s+(?:краткий|подробный|обновл[её]нный|переработанный)\\s+(?:обзор|вариант|текст|ответ)\\s*:)",
       "hint": "Chat wrapper left in a text meant to stand alone; delete it.",
       "example_bad": "Надеюсь, это поможет! Вот краткий обзор:"
     },
@@ -815,9 +815,9 @@
     {
       "id": "ru-offer-more",
       "category": "chatbot-residue",
-      "severity": "hard",
+      "severity": "soft",
       "regex": "(?<![\\w])(?:хотите,?\\s+(?:чтобы\\s+я|я\\s+(?:сделаю|подготовлю|напишу|сокращу))|(?:если\\s+(?:нужно|хотите|надо)|при\\s+желании),?\\s+(?:я\\s+)?(?:могу|сделаю|подготовлю|напишу|доработаю|адаптирую)|могу\\s+(?:также\\s+)?(?:подготовить|сделать|написать|адаптировать)\\s+(?:вариант|версию|ещё))(?![\\w])",
-      "hint": "The assistant's offer to do more stayed in the text; delete it.",
+      "hint": "Check whether the offer belongs to the author and was authorized. An authorized offer can stay; distinguish it from leftover assistant chatter.",
       "example_bad": "Если нужно, могу подготовить версию для сайта."
     },
     {
@@ -1002,7 +1002,7 @@
       "category": "typography",
       "severity": "soft",
       "regex": "(?<![\\w])\\$\\s?\\d|(?<![\\d,.])\\d{1,3}(?:,\\d{3})+(?![\\d,])",
-      "hint": "English number format in Russian text: a currency sign before the number, or a comma that a Russian reader takes for a decimal point. Write «186 млн долларов», «1000» or «1 000».",
+      "hint": "Check the intended number format: a comma with three following digits may be a valid Russian decimal or a thousands separator. Preserve the value; use source context before changing.",
       "example_bad": "Выручка составила $186 млн."
     },
     {
