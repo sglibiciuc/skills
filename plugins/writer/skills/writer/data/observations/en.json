@@ -1,0 +1,53 @@
+{
+  "description": "Contextual observations, never bans or acceptance gates. See NOTICE for donor provenance.",
+  "patterns": [
+    {
+      "id": "obs-en-vocab-cluster",
+      "regex": "(?<!\\w)(?:groundbreaking|crucial|robust|foster(?:s|ing)?|enhanc(?:e|es|ing)|reshaping|poised|thriv(?:e|es|ing)|notably|moreover|furthermore)(?!\\w)",
+      "hint": "Several stock emphasis or transition words occur. Check what concrete meaning they add; preserve technical terms such as robust regression.",
+      "min_hits": 2
+    },
+    {
+      "id": "obs-en-stock-frame",
+      "regex": "(?<!\\w)(?:in\\s+today['’]s|rapidly\\s+evolving|walks\\s+of\\s+life|push(?:ing)?\\s+the\\s+boundaries)(?!\\w)",
+      "hint": "Does this framing give the reader specific information or just a generic introduction?",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-en-slot",
+      "regex": "\\[(?:Recipient|Topic|Name|Company|Phone|Date|Link|Address)(?:[^\\]\\n]{0,30})?\\]",
+      "hint": "Check whether the slot belongs in an intentional template or is unfinished material.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-en-reasoning",
+      "regex": "(?<!\\w)(?:let\\s+me\\s+break\\s+this\\s+down|first,?\\s+we\\s+need\\s+to\\s+understand|let['’]s\\s+think\\s+through)(?!\\w)",
+      "hint": "Is this useful guidance to the reader or narration of the assistant's drafting process?",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-en-whether",
+      "regex": "(?<!\\w)whether\\s+you\\s+[^.!?\\n]{3,110}\\s+or\\s+[^.!?\\n]{3,110}",
+      "hint": "Does this cover a real choice for the reader, or promise relevance to everyone?",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-en-theater",
+      "regex": "(?<!\\w)[a-z-]+\\s+theat(?:er|re)(?!\\w)",
+      "hint": "Does this label explain the actual problem? Keep it if the person's voice and concrete example support it.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-en-phantom-objection",
+      "regex": "(?<!\\w)(?:while\\s+some\\s+might\\s+argue|you\\s+might\\s+think|you\\s+may\\s+be\\s+wondering)(?!\\w)",
+      "hint": "Is this an actual reader concern? Check whether answering it helps the task.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-en-diff-narration",
+      "regex": "(?<!\\w)(?:was|were)\\s+(?:refactored|updated|modified)\\s+to\\s+(?:replace|use|support)(?!\\w)",
+      "hint": "For current-use documentation, would the current behavior help more than change history? Keep change history when it is the task.",
+      "min_hits": 1
+    }
+  ]
+}

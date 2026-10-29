@@ -20,6 +20,8 @@ from collections import OrderedDict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _text  # noqa: E402
+import _markdown
+import _observations
 
 SLOP_DIR = os.path.join(_text.DATA_DIR, "slop")
 
@@ -54,11 +56,12 @@ def scan(text, lang="auto", ignore=()):
     patterns, files, note = load_catalog(detected)
     starts = _text.line_starts(text)
     ignore = set(ignore)
+    visible = _markdown.mask_code(text)
     findings = []
     for p in patterns:
         if p["id"] in ignore:
             continue
-        for m in compile_pattern(p).finditer(text):
+        for m in compile_pattern(p).finditer(visible):
             if m.end() == m.start():
                 continue
             line, col = _text.line_col(starts, m.start())
@@ -81,6 +84,10 @@ def scan(text, lang="auto", ignore=()):
         ("soft", len(findings) - hard),
         ("by_category", by_cat),
     ])
+    observation_path = os.path.join(_text.DATA_DIR, "observations", detected + ".json")
+    observation_patterns = (_text.load_json(observation_path)["patterns"]
+                            if os.path.isfile(observation_path) else [])
+    observations = _observations.collect(visible, detected, observation_patterns, compile_pattern, ignore)
     return OrderedDict([
         ("language", detected),
         ("language_source", "auto" if lang == "auto" else "flag"),
@@ -89,6 +96,7 @@ def scan(text, lang="auto", ignore=()):
         ("ignored", sorted(ignore)),
         ("summary", summary),
         ("findings", findings),
+        ("observations", observations),
     ])
 
 
@@ -105,6 +113,8 @@ def as_text(r):
         out.append("%d:%d  [%s] %s  «%s»  %s" % (f["line"], f["column"], f["severity"], f["id"], f["match"], f["hint"]))
     if not r["findings"]:
         out.append("No patterns matched.")
+    for o in r.get("observations", []):
+        out.append("Observation %s: %s %s" % (o["id"], o["hint"], o.get("places", o.get("sentence_word_lengths", []))))
     return "\n".join(out)
 
 

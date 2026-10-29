@@ -13,10 +13,10 @@ them is reproduced.
 
 2. AI-tell pattern ideas (skills/writer/data/slop/*.json)
 
-From the sources below we took only ideas: which phrases signal
-machine-written text, and regular expressions for them (facts, not text).
-Hints and examples are written anew; no wording, before/after example or code
-was copied. Severity levels are our own.
+The original slop catalogs draw on the pattern ideas of the sources below.
+Hints and examples are written for Writer; severity levels are our own.
+The contextual observation catalogs extend those families. They are reading
+aids, not claims of AI authorship or requirements to remove matched words.
 
 - humanizer, https://github.com/blader/humanizer - Siqi Chen (GitHub: blader). MIT License.
 - humanizer-ru, https://skills.sh/smixs/humanizer-ru - Serge Shima. MIT License.
@@ -36,3 +36,20 @@ was copied. Severity levels are our own.
   by Wikipedia editors, licensed CC BY-SA 4.0. Only concepts were used; no
   wording from the essays is included, so no CC BY-SA material is part of this
   plugin.
+
+3. Reused code and adapted data
+
+skills/writer/scripts/_markdown.py and _repeats.py are adapted from
+ilyautov/humanizer-ru, commit 3621b1ca6b9a2f84f28f692222470dc25706255d,
+skills/humanizer-ru/scripts/humanizer_metrics/markdown.py and repeats.py.
+Copyright and MIT permission are preserved in skills/writer/licenses/ilyautov-MIT.txt,
+including when the skill folder is distributed separately.
+Changes: Writer masks only closed code, keeps quotes and URLs visible,
+handles nested inline backtick lengths, extends phrase repeats to English,
+and resolves observed repeats back to text locations in _observations.py.
+The upstream score and author-origin verdict are not used.
+
+Contextual observation families also draw on smixs/humanizer-ru (ff990df),
+Aboudjem/humanizer-skill (a58df06), and blader/humanizer (0ef9fe5).
+The questions and examples are Writer's own. No donor before/after examples
+are embedded as instructions to invent facts, change voice or meet a score.

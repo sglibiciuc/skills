@@ -1,0 +1,101 @@
+{
+  "description": "Contextual observations, never bans or acceptance gates. See NOTICE for donor provenance.",
+  "patterns": [
+    {
+      "id": "obs-ru-evidence",
+      "regex": "(?<!\\w)(?:свидетельству[а-яё]*\\s+о|демонстриру[а-яё]*|подч[её]ркива[а-яё]*|акцентиру[а-яё]*)(?!\\w)",
+      "hint": "Check what evidence or specific effect this verb refers to. A literal demonstration or an attributed claim can stay.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-abstraction",
+      "regex": "(?<!\\w)(?:важност[а-яё]*|гармони[а-яё]*|значимост[а-яё]*|реализаци[а-яё]*|внедрени[а-яё]*|оптимизаци[а-яё]*|функционировани[а-яё]*|взаимодействи[а-яё]*)(?!\\w)",
+      "hint": "Several abstract nouns occur. Check whether the reader can identify who does what; keep established terms and needed process names.",
+      "min_hits": 2
+    },
+    {
+      "id": "obs-ru-this-effect",
+      "regex": "(?<!\\w)это\\s+(?:помога[а-яё]*|созда[а-яё]*|становится|способству[а-яё]*|делает|да[её]т)(?!\\w)",
+      "hint": "Does 'this' point to a clear cause and a concrete effect? Keep a useful explanation.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-real",
+      "regex": "(?<!\\w)(?:стал[аои]?|станет|оказал[а-яё]*|был[аои]?|это)\\s+настоящ[а-яё]+\\s+(?!договор|врем|момент)[а-яё]+",
+      "hint": "Is 'real/true' adding a distinction or only intensifying a claim? Check against the supplied facts.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-meaning",
+      "regex": "(?<!\\w)(?:заслужива[а-яё]*|вдохновля[а-яё]*|напомина[а-яё]*\\s+(?:(?:нам|вам)\\s+)?(?:о|об|что)|повод\\s+задуматься|стоит\\s+задуматься)(?!\\w)",
+      "hint": "Check whether this interpretation belongs to the person or is generic praise; preserve their actual feeling or observation.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-important-step",
+      "regex": "(?<!\\w)важн[а-яё]+\\s+шаг[а-яё]*(?!\\w)",
+      "hint": "What changes after this step? A concrete, supported next step can keep this wording.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-imagine",
+      "regex": "(?<!\\w)представьте(?:\\s+себе)?(?!\\w)",
+      "hint": "Does the imagined situation help this reader understand, or delay the useful point?",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-for-those",
+      "regex": "(?<!\\w)для\\s+тех\\s*,\\s*кто(?!\\w)",
+      "hint": "Check whether this identifies the actual audience or is a generic appeal.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-context",
+      "regex": "(?<!\\w)(?:с\\s+уч[её]том|в\\s+свете|на\\s+фоне|что\\s+касается|можно\\s+сказать|с\\s+другой\\s+стороны|в\\s+то\\s+время\\s+как)(?!\\w)",
+      "hint": "Check that each transition names a useful relation, rather than repeating an introduction. Real contrast or a condition can stay.",
+      "min_hits": 2
+    },
+    {
+      "id": "obs-ru-validation",
+      "regex": "(?<!\\w)(?:ты\\s+не\\s+ошибаешься|ты\\s+настоящ[а-яё]*|тихое\\s+подтверждение|сам\\s+факт\\s+этого)(?!\\w)",
+      "hint": "Does this reassurance answer what the person actually asked? Keep authentic quoted or requested reassurance.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-moral",
+      "regex": "(?<=[.!?])\\s*Мораль\\s+(?:проста|такова)[^.!?]*[.!?]?\\s*$",
+      "hint": "Does the closing moral add something the reader needs, or explain an already clear story?",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-wrapper",
+      "regex": "(?<!\\w)(?:ниже\\s+(?:готовый\\s+)?текст|надеюсь\\s*,?\\s*это\\s+было\\s+полезно|пришлите[^.!?\\n]{0,90},?\\s+и\\s+я\\s+(?:подготовлю|сделаю|напишу))(?!\\w)",
+      "hint": "Check whether this is text for the recipient or leftover conversation with the assistant. An authorized offer from the author can stay.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-slot",
+      "regex": "\\[(?:телефон|город|должность|ссылка|имя|компания|дата|сумма|адрес)(?:[^\\]\\n]{0,30})?\\]",
+      "hint": "Check whether this placeholder is intentional in a template or needs information before the text is used.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-contrast",
+      "regex": "(?<!\\w)это\\s+не\\s+[^.!?\\n]{2,65},\\s*(?:а\\s+)?это\\s+[^.!?\\n]{2,65}",
+      "hint": "Does this contrast clarify a real distinction? Preserve meaningful contrasts and quoted examples.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-insight",
+      "regex": "(?<!\\w)(?:все\\s+упускают|большинство\\s+упускает|никто\\s+не\\s+(?:расскажет|говорит\\s+о)|главная\\s+ошибка\\s+большинства|чего\\s+вам\\s+не\\s+расскажут)(?!\\w)",
+      "hint": "Check the basis for this claim about everyone or nobody. A narrower statement may match the available evidence.",
+      "min_hits": 1
+    },
+    {
+      "id": "obs-ru-range",
+      "regex": "(?<!\\w)от\\s+[а-яё][^.!?\\n]{1,55}\\s+до\\s+[а-яё][^.!?\\n]{1,55}",
+      "hint": "Are these meaningful endpoints of a range or just unrelated examples? A genuine range can stay.",
+      "min_hits": 1
+    }
+  ]
+}
