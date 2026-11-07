@@ -9,7 +9,27 @@ Success is measured by three things: the reader understands the text on the firs
 
 Scripts live in `scripts/` next to this file: run `python3 <this skill's folder>/scripts/<name>.py`; `-` reads the text from stdin, `--help` shows the rest.
 
-Before any new text, edit or review, read the person's profile: in Cowork and Codex, run `style.py show --project`; in Claude Code, run `style.py show`; in claude.ai, read the writing-profile block in the project instructions.
+## Profile
+
+**Start.** Before the first Writer work in a chat, read the person's profile: in Claude Code, run `style.py show`; in Codex and Cowork, `style.py show --project`; in claude.ai, read the writing-profile block in the project instructions. The first line of your first Writer reply in the chat is about the profile, built from `summary` and written wholly in the person's language, label included: "Writing profile: 23 rules, updated 04.11" in English, "Профиль стиля: 23 правила, обновлён 04.11" in Russian. It stands outside the read-back's five lines and the Reply limit. With no profile, that line offers once to set it up now or later; the task continues on its usual path. For a greeting alone, the line goes inside the introduction.
+
+**Review after delivery.** The work is delivered when `draft.py accept` succeeds; a review without a rewrite ("assess it", "what's wrong") is delivered with the reply that gives the review. Then, before that final answer, go back over this work's dialogue and list rule candidates from the person's corrections to the read-back and to the text, their own edits to the result, every "don't do that" and every "remember". A candidate holds for future texts:
+
+- the person and their company: signature, form of address, banned words, editorial policy;
+- taste: how they like their texts to sound and look, such as length, tone, structure, words, typography;
+- approach: how Writer works with them, such as when to skip the read-back or how many options to give.
+
+Facts, content and one-off edits to this text alone stay out. "Remember" from the person is always a candidate. Give each candidate a `when`, where it applies ("emails to clients"), and an `origin`, where it came from ("correction to the reply to Marta"). List the person's "remember" requests first: the limit keeps the first three. Pass the list, an empty one too, to `style.py review --candidates -` as JSON `[{"rule", "when", "origin"}]`. Propose only what comes back in `propose`, minus any item that says the same as a profile rule or an entry of `declined`, even in other words.
+
+**Consent block.** Once per delivered work, at the end of the reply under the text: the `propose` items, numbered, each as the rule with where it applies and where it came from, then one question: which to remember (numbers, "all" or "no"). With an empty `propose`, one line instead: "Profile: no new rules". In claude.ai, offer each rule as a ready line for the project instructions.
+
+**The person's answer.** For each accepted rule: `style.py remember --rule "<rule>" --when "<when>" --origin "<origin>"`, then one line "Saved N rules to <path>". For each proposed rule left out (numbers not chosen, or every rule after "no"): `style.py decline --rule "<rule>" --when "<when>"`, so it is never proposed again. With no answer, record nothing and let the question rest for this chat.
+
+Set up a profile only when the person asks ("set it up for me") or accepts the invitation: who they are and what they write; 3–5 of their own texts for the voice; the company's editorial policy, if they have one, which you study and then propose what to add. When a profile exists, start from it and merge. Show the whole draft and write it with `style.py write --from -` after their yes.
+
+An editorial policy sent along with a task ("take it into account"): apply it to this text, then offer to save it to the profile; write after their yes.
+
+**Storage.** In Codex and Cowork, every profile command (`show`, `review`, `remember`, `decline`, `write`) takes `--project` after the subcommand: the files live in `.writer/` of the working folder, which the sandbox lets you write. In Claude Code they live in the global `~/.writer`. In claude.ai the container keeps no files between chats: `remember`, `decline` and `write` stay unused, and "remember" means giving the person the ready line or block to paste into the project instructions.
 
 ## New text or edit
 
@@ -59,22 +79,10 @@ The Writer hook automatically analyzes the staged revision and returns its slop 
 
 Before delivery, read `analysis.slop.observations`: places and questions to consider in context. Use the task and the person's voice to decide what helps the reader; ordinary wording, deliberate repetition and a fitting structure can stay. Where relevant, also read for repeated ideas in different words, a repeated paragraph or list pattern, general claims with little substance, and explanations the reader already knows. Improve those places using the supplied material, preserving its facts and commitments. The goal is a useful, faithful text; observation counts are not a quality target. Observations need no separate `--decisions` entries.
 
-Revise with `draft.py put --id <id> --text -`; the source and named limits are retained. Changed text gets a new revision and analysis. When ready, run `draft.py accept <id> --revision <revision>`; for each remaining slop finding, pass `--decisions '<JSON object mapping each finding_key to its keep reason>'`. With no remaining findings the default is `{}`. A stale analysis, undecided finding or exceeded named limit prevents acceptance. The command returns the checked text: use that text unchanged in your final answer or result file, with the read-back and optional closing lines outside it. Keep draft paths and analysis out of the person's reply.
-
-## Profile
-
-On the first Writer request in each chat, check for a profile using the method above. If none is available, offer once, in one short line, to set it up now or later. Add the offer to the current task's usual response and continue that task on its usual path. For a greeting alone, include it in the introduction.
-
-When the person corrects a read-back, ask "Remember this?" once per rule, only when the correction is about the person or their company (signature, form of address, banned words, editorial policy), never about this text's content. Name the rule's boundary in the question: "In emails to clients, address them by first name. Remember?", not "Address people by first name". The question is one of the lines under the text. On yes: `style.py remember --rule "<rule>" --when "<boundary>" --origin "<this text, e.g. reply to Marta>"`.
-
-Set up a profile only when the person asks ("set it up for me") or accepts the invitation: who they are and what they write; 3–5 of their own texts for the voice; the company's editorial policy, if they have one, which you study and then propose what to add. When a profile exists, start from it and merge. Show the whole draft and write it with `style.py write --from -` after their yes.
-
-An editorial policy sent along with a task ("take it into account"): apply it to this text, then offer to save it to the profile; write after their yes.
-
-The `--project` option follows the subcommand for `show`, `remember` and `write` and selects a `.writer/` folder in the working folder. In claude.ai the container keeps no files between chats: `style.py remember` and `write` stay unused, and "remember" means giving the person the ready line or block to paste into the project instructions.
+Revise with `draft.py put --id <id> --text -`; the source and named limits are retained. Changed text gets a new revision and analysis. When ready, run `draft.py accept <id> --revision <revision>`; for each remaining slop finding, pass `--decisions '<JSON object mapping each finding_key to its keep reason>'`. With no remaining findings the default is `{}`. A stale analysis, undecided finding or exceeded named limit prevents acceptance. The command returns the checked text: use that text unchanged in your final answer or result file, with the read-back and optional closing lines outside it. Keep draft paths and analysis out of the person's reply. Then run the review after delivery under "Profile".
 
 ## Reply
 
-The read-back line if there is one, then the text, then at most three short lines. Name the path of a result you saved; leave out script names, steps and other paths.
+The read-back line if there is one, then the text, then at most three short lines. In addition to those three lines: the profile line, when due, opens the reply, and the consent block (or "Profile: no new rules") closes it. Name the path of a result you saved; leave out script names, steps and other paths.
 
 A greeting or "what can you do?" with no task gets a few lines on what you do: write and reply, edit, shorten and review, make a text sound human, remember the person's style.

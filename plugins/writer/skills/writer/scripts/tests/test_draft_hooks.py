@@ -203,5 +203,87 @@ class DraftHooksTest(unittest.TestCase):
         self.assertIsNone(self.event("Stop"))
 
 
+    REVIEWED = '{"propose": [], "dropped": [], "declined": [], "writes_to": "x"}'
+
+    def command(self, kind, command, sid="one", response="Пришлите файл.", cwd=None, **extra):
+        data = {"hook_event_name": kind, "session_id": sid, "cwd": str(cwd or self.cwd),
+                "tool_input": {"command": command}, "tool_response": {"stdout": response}}
+        data.update(extra)
+        return hook.process(data)
+
+    def deliver(self):
+        staged = draft.stage("Пришлите файл.")
+        self.event("PostToolUse", staged)
+        draft.accept(staged["id"], staged["revision"], {})
+        return self.command("PostToolUse", "python3 draft.py accept %s --revision %s"
+                            % (staged["id"], staged["revision"]))
+
+    def test_real_accept_marks_delivery_and_stop_blocks_once(self):
+        feedback = self.deliver()
+        self.assertIn("style.py review", feedback["hookSpecificOutput"]["additionalContext"])
+        self.assertEqual(self.event("Stop")["decision"], "block")
+        self.assertIsNone(self.event("Stop"), "one reminder per delivery")
+
+    def test_failed_accept_is_not_a_delivery(self):
+        staged = draft.stage("Пришлите файл.")
+        self.event("PostToolUse", staged)
+        self.assertIsNone(self.command("PostToolUse", "python3 draft.py accept %s --revision bad" % staged["id"]))
+        draft.accept(staged["id"], staged["revision"], {})
+        self.assertIsNone(self.event("Stop"))
+        self.assertIsNone(self.command("PostToolUse", "python3 draft.py accept x", sid="reader"))
+        self.assertIsNone(self.event("Stop", sid="reader"))
+
+    def test_review_marks_reviewed(self):
+        self.deliver()
+        self.command("PostToolUse", "python3 style.py review --candidates bad.json", response="error: bad")
+        self.command("PostToolUse", 'python3 style.py remember --rule "Always review dates" --when x --origin y',
+                     response=self.REVIEWED)
+        session = draft.load(draft.root() / ("session-" + draft.digest("one") + ".json"))
+        self.assertFalse(session["reviewed"], "a failed review or a remember command is not a review")
+        self.assertIsNone(self.command("PostToolUse", "python3 style.py review --project --candidates - <<< '[]'",
+                                       response=self.REVIEWED))
+        self.assertIsNone(self.event("Stop"))
+
+    def test_chained_accept_and_review_counts(self):
+        staged = draft.stage("Пришлите файл.")
+        self.event("PostToolUse", staged)
+        draft.accept(staged["id"], staged["revision"], {})
+        self.assertIsNone(self.command("PostToolUse", "python3 draft.py accept %s --revision %s && "
+                                       "python3 style.py review --candidates - <<< '[]'"
+                                       % (staged["id"], staged["revision"]),
+                                       response="Пришлите файл." + self.REVIEWED))
+        self.assertIsNone(self.event("Stop"))
+
+    def test_accept_from_another_cwd_and_later_turn(self):
+        staged = draft.stage("Пришлите файл.")
+        self.event("PostToolUse", staged)
+        self.event("UserPromptSubmit")
+        draft.accept(staged["id"], staged["revision"], {})
+        accept = "cd /plugin/scripts && python3 draft.py accept %s --revision %s" % (staged["id"], staged["revision"])
+        self.assertIsNone(self.command("PostToolUse", accept, sid="two"), "another session's draft is no delivery")
+        feedback = self.command("PostToolUse", accept, cwd=self.base)
+        self.assertIn("style.py review", feedback["hookSpecificOutput"]["additionalContext"])
+        self.assertEqual(self.event("Stop", cwd=self.base)["decision"], "block")
+
+    def test_stop_hook_active_is_not_blocked(self):
+        self.deliver()
+        self.assertIsNone(hook.process({"hook_event_name": "Stop", "session_id": "one", "cwd": str(self.cwd),
+                                        "stop_hook_active": True}))
+
+    def test_no_delivery_no_review_block(self):
+        self.assertIsNone(self.event("Stop"))
+        self.command("PostToolUse", "python3 style.py review --candidates - <<< '[]'")
+        self.assertIsNone(self.event("Stop"))
+
+    def test_new_prompt_resets_delivery_flags(self):
+        self.deliver()
+        self.event("UserPromptSubmit")
+        session = draft.load(draft.root() / ("session-" + draft.digest("one") + ".json"))
+        self.assertFalse({"delivered", "reviewed", "review_reminded"} & set(session))
+        self.assertIsNone(self.event("Stop"))
+        self.deliver()
+        self.assertEqual(self.event("Stop")["decision"], "block", "a new delivery gets its own reminder")
+
+
 if __name__ == "__main__":
     unittest.main()

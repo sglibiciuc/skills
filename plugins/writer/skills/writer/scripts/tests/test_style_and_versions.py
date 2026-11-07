@@ -146,6 +146,103 @@ class StyleTest(unittest.TestCase):
         self.assertIn("could not write the profile", p.stderr.decode("utf-8"))
 
 
+    def write_layer(self, folder, name, text):
+        os.makedirs(folder, exist_ok=True)
+        with open(os.path.join(folder, name), "w", encoding="utf-8") as fh:
+            fh.write(text)
+
+    def test_show_summary(self):
+        s = style.effective(self.project)["summary"]
+        self.assertEqual(dict(s), {"rules": 0, "updated": None, "declined": 0})
+        p = run("style.py", "show", "--format", "text", env=self.env, cwd=self.project)
+        self.assertEqual(p.stdout.decode("utf-8").splitlines()[0], "no profile yet")
+        style.write_profile("Пишу коротко.\n- подпись: Саша\n- без эмодзи\n")
+        layer = os.path.join(self.tmp.name, "project", ".writer")
+        self.write_layer(layer, "style.md", "- на «вы»\n")
+        self.write_layer(layer, "declined.md", "- [посты] без восклицаний (2026-11-01)\n")
+        self.write_layer(self.home, "declined.md", "- [письма] без подписи (2026-11-02)\n")
+        os.utime(style.global_path(), (0, 0))
+        s = style.effective(self.project)["summary"]
+        self.assertEqual((s["rules"], s["declined"]), (3, 2))
+        today = __import__("datetime").date.today().isoformat()
+        self.assertEqual(s["updated"], today, "the newest used file decides the date")
+        p = run("style.py", "show", "--format", "text", env=self.env, cwd=self.project)
+        self.assertEqual(p.stdout.decode("utf-8").splitlines()[0], "profile: 3 rules, updated " + today)
+
+    def candidates(self, *rules):
+        return [{"rule": r, "when": "письма клиентам", "origin": "ответ Марте"} for r in rules]
+
+    def test_review_filters_profile_declined_and_limit(self):
+        style.remember("Подпись: Саша", "все письма", "письмо Марте", date="2026-10-08")
+        style.remember("цены (с НДС) цифрами", "письма", "ответ Марте (упаковка)", date="2026-10-09")
+        style.write_profile(style.read(style.global_path()) + "- без эмодзи\n")
+        self.write_layer(self.home, "declined.md", "- [письма] без подписи (2026-11-02)\n")
+        layer = os.path.join(self.tmp.name, "project", ".writer")
+        self.write_layer(layer, "declined.md", "- [посты] без восклицаний (2026-11-01)\n")
+        before = sorted(os.listdir(self.home)), sorted(os.listdir(layer))
+        r = style.review(self.candidates("  подпись:   саша. ", "Без эмодзи", "цены (с НДС) цифрами", "без подписи", "Без восклицаний.",
+                                         "один", "два", "три", "четыре"), start=self.project)
+        self.assertEqual([c["rule"] for c in r["propose"]], ["один", "два", "три"])
+        self.assertEqual(r["propose"][0], {"rule": "один", "when": "письма клиентам", "origin": "ответ Марте"})
+        self.assertEqual([(d["rule"].strip(), d["reason"]) for d in r["dropped"]],
+                         [("подпись:   саша.", "in_profile"), ("Без эмодзи", "in_profile"), ("цены (с НДС) цифрами", "in_profile"),
+                          ("без подписи", "declined"), ("Без восклицаний.", "declined"), ("четыре", "limit")])
+        self.assertEqual(r["writes_to"], style.global_path())
+        self.assertEqual(r["declined"], ["без подписи", "без восклицаний"])
+        self.assertEqual(style.review([], start=self.project, project=True)["writes_to"],
+                         os.path.join(self.project, ".writer", "style.md"), "declined.md alone is no profile layer")
+        self.assertEqual((sorted(os.listdir(self.home)), sorted(os.listdir(layer))), before, "review writes nothing")
+        with self.assertRaises(style._text.BadInput):
+            style.review([{"rule": "x", "when": ""}])
+
+    def test_review_cli_empty_and_bad_input(self):
+        p = run("style.py", "review", "--candidates", "-", stdin="[]", env=self.env, cwd=self.project)
+        self.assertEqual(p.returncode, 0, p.stderr)
+        r = json.loads(p.stdout.decode("utf-8"))
+        self.assertEqual((r["propose"], r["dropped"]), ([], []))
+        self.assertEqual(run("style.py", "review", stdin="", env=self.env, cwd=self.project).returncode, 0)
+        self.assertEqual(run("style.py", "review", stdin="{", env=self.env, cwd=self.project).returncode, 2)
+        p = run("style.py", "review", "--project", stdin=json.dumps(self.candidates("один")), env=self.env,
+                cwd=self.project)
+        r = json.loads(p.stdout.decode("utf-8"))
+        self.assertEqual(r["writes_to"], os.path.join(os.path.realpath(self.project), ".writer", "style.md"))
+        self.assertEqual(len(r["propose"]), 1)
+        self.assertFalse(os.path.exists(self.home), "review must not write")
+        self.assertFalse(os.path.exists(os.path.join(self.project, ".writer")))
+
+    def test_decline_writes_declined_with_backup(self):
+        r = style.decline("без подписи", "письма", date="2026-11-02")
+        self.assertEqual(r["path"], os.path.join(self.home, "declined.md"))
+        self.assertEqual(r["line"], "- [письма] без подписи (2026-11-02)")
+        self.assertIsNone(r["backup"])
+        r = style.decline("без эмодзи", "посты", date="2026-11-03")
+        self.assertTrue(r["backup"].endswith("declined.md.bak"))
+        self.assertFalse(os.path.exists(style.global_path()), "decline leaves style.md alone")
+        self.assertEqual(style.effective(self.project)["summary"]["declined"], 2)
+        self.assertEqual(style.review(self.candidates("Без подписи."))["dropped"][0]["reason"], "declined")
+        with self.assertRaises(style._text.BadInput):
+            style.decline("x", " ")
+
+    def test_decline_project_flag_and_fallback(self):
+        layer = os.path.join(self.tmp.name, "project", ".writer")
+        self.write_layer(layer, "style.md", "- на «вы»\n")
+        r = style.decline("без эмодзи", "посты", project=True, start=self.project)
+        self.assertEqual((r["path"], r["layer"]), (os.path.join(layer, "declined.md"), "project"))
+        self.assertFalse(os.path.exists(self.home))
+        self.block_home()
+        other = os.path.join(self.tmp.name, "other")
+        os.makedirs(other)
+        p = run("style.py", "decline", "--rule", "без подписи", "--when", "письма", env=self.env, cwd=other)
+        self.assertEqual(p.returncode, 0, p.stderr)
+        r = json.loads(p.stdout.decode("utf-8"))
+        self.assertEqual((r["layer"], r["fallback_from"]), ("project", style.global_path("declined.md")))
+        self.assertEqual(r["path"], os.path.join(os.path.realpath(other), ".writer", "declined.md"))
+        p = run("style.py", "decline", "--rule", "ещё", "--when", "письма", env=self.env, cwd=other)
+        self.assertTrue(json.loads(p.stdout.decode("utf-8"))["backup"].endswith("declined.md.bak"))
+        p = run("style.py", "review", stdin=json.dumps(self.candidates("без подписи")), env=self.env, cwd=other)
+        self.assertEqual(json.loads(p.stdout.decode("utf-8"))["dropped"][0]["reason"], "declined")
+
+
 class SaveVersionTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
