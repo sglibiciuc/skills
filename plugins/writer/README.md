@@ -34,7 +34,7 @@ Start a new chat after installation. Use `/writer:writer` in Claude Code, includ
 
 ## Your first text
 
-Until you have a profile, Writer offers once in each new chat to set it up now or later. It adds a short line to its usual reply and continues your task. If you only say hello, the offer is part of the introduction.
+In the first reply of each chat, Writer adds one line about your profile: how many rules it holds and when it was last updated. Until you have a profile, that line offers once to set it up now or later, and Writer continues your task. If you only say hello, the offer is part of the introduction.
 
 You could start with:
 
@@ -69,9 +69,9 @@ You can accept the invitation or ask for setup yourself:
 
 Writer asks who you are and what you write, requests 3–5 of your own texts, and studies your company’s editorial policy if you have one. Your samples help describe your voice. The editorial policy sets company requirements for forms of address, terminology, formatting, and tone. Writer then shows you the whole proposed profile and saves it after you agree. If a profile already exists, it incorporates the new decisions into it.
 
-You can refine preferences while working, too. When you correct a rule about yourself or your company, Writer offers to remember it within a specific boundary: “In client emails, use first names. Remember this?” A detail in one email, such as a new meeting date, should stay specific to that email. An editorial policy supplied with a task is applied to that text, with an offer to save it for future use.
+You can refine preferences while working, too. After handing over a text, Writer looks back over your corrections and edits and, at the end of its reply, proposes up to three rules, each with where it applies and where it came from: “In client emails, use first names (from your correction to the reply to Marta).” Answer with numbers, “all,” or “no.” Writer saves only what you accept, and a rule you declined is not proposed again. A detail in one email, such as a new meeting date, stays specific to that email. An editorial policy supplied with a task is applied to that text, with an offer to save it for future use.
 
-Before writing, editing, or reviewing, Writer reads the available profile. In an environment with persistent files, you can keep a global profile and separate project rules. They live outside the plugin and survive its updates. In claude.ai, Writer gives you the agreed profile or new rule to paste into the project instructions, because files in its working environment do not persist between chats.
+Before writing, editing, or reviewing, Writer reads the available profile. In an environment with persistent files, you can keep a global profile and separate project rules. They live outside the plugin and survive its updates. In Codex and Cowork, the profile is kept in `.writer/` inside your working folder. In claude.ai, Writer gives you the agreed profile or new rule to paste into the project instructions, because files in its working environment do not persist between chats.
 
 ## Before you get the result
 
